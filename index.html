@@ -35,7 +35,7 @@
       <div class="full"><label for="template">เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option value="both" selected>สร้างทั้งสองไฟล์ (ค่าเริ่มต้น)</option><option value="application">TOLC Consent &amp; Application</option><option value="disclosure">Consent for Disclosure Information</option></select></div>
       <div class="full"><label for="companyName">ข้าพเจ้า (นิติบุคคลชื่อ) *</label><input id="companyName" name="companyName" maxlength="150" placeholder="เช่น บริษัท ตัวอย่าง จำกัด" required><small id="companyNameError" class="error"></small></div>
       <div><label for="companyType">ประเภทนิติบุคคล</label><select id="companyType" name="companyType"><option value="">-- เลือกประเภท --</option><option>บริษัทจำกัด</option><option>บริษัทมหาชนจำกัด</option><option>ห้างหุ้นส่วนจำกัด</option><option>ห้างหุ้นส่วนสามัญนิติบุคคล</option><option>มูลนิธิ</option><option>สมาคม</option><option>อื่น ๆ</option></select></div>
-      <div><label for="companyRegNo">เลขทะเบียนนิติบุคคล 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div class="lookup-row"><div id="digitCount" class="count">0/13 หลัก</div><button type="button" id="dbdLookupButton" class="lookup" disabled>ค้นหาที่ DBD</button></div><small id="companyRegNoError" class="error"></small></div>
+      <div><label for="companyRegNo">เลขทะเบียนนิติบุคคล 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div class="lookup-row"><div id="digitCount" class="count">0/13 หลัก</div><button type="button" id="dbdLookupButton" class="lookup">เปิด DBD DataWarehouse</button></div><small id="companyRegNoError" class="error"></small></div>
       <div><label for="phoneNo">หมายเลขโทรศัพท์</label><input id="phoneNo" name="phoneNo" inputmode="tel" maxlength="20" placeholder="021234567"></div>
       <div><label for="registrarOffice">หน่วยงานที่ออกทะเบียน</label><input id="registrarOffice" name="registrarOffice" maxlength="180" value="กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์"></div>
       <div><label for="authorizedName">ผู้มีอำนาจกระทำการ คนที่ 1</label><input id="authorizedName" name="authorizedName" maxlength="120" placeholder="ชื่อ-นามสกุล"></div>
@@ -151,17 +151,13 @@ regInput.addEventListener('input',function(){
   this.value=this.value.replace(/\D/g,'').slice(0,13);
   digitCount.textContent=`${this.value.length}/13 หลัก`;
   digitCount.classList.toggle('complete',this.value.length===13);
-  dbdLookupButton.disabled=this.value.length!==13;
   if(this.value.length===13) setError('companyRegNo');
 });
 dbdLookupButton.addEventListener('click',()=>{
-  const juristicId=regInput.value;
-  if(!/^\d{13}$/.test(juristicId)){setError('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');return;}
-  const dbdProfileId='5'+juristicId;
-  window.open('https://datawarehouse.dbd.go.th/company/profile/'+dbdProfileId,'_blank','noopener,noreferrer');
+  window.open('https://datawarehouse.dbd.go.th/','_blank','noopener,noreferrer');
 });
 phoneInput.addEventListener('input',function(){this.value=this.value.replace(/[^\d+\- ]/g,'').slice(0,20);});
-form.addEventListener('reset',()=>setTimeout(()=>{setError('companyName');setError('companyRegNo');digitCount.textContent='0/13 หลัก';digitCount.classList.remove('complete');dbdLookupButton.disabled=true;statusBox.className='';statusBox.textContent='';},0));
+form.addEventListener('reset',()=>setTimeout(()=>{setError('companyName');setError('companyRegNo');digitCount.textContent='0/13 หลัก';digitCount.classList.remove('complete');statusBox.className='';statusBox.textContent='';},0));
 form.addEventListener('submit',async event=>{
   event.preventDefault();
   const data=Object.fromEntries(new FormData(form).entries());
