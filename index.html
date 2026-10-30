@@ -16,9 +16,9 @@
     main{max-width:900px;margin:28px auto;padding:0 16px 40px}.card{background:#fff;padding:26px;border-radius:14px;box-shadow:0 8px 28px rgba(15,45,70,.1)}
     .privacy{display:inline-block;margin-bottom:22px;padding:8px 12px;border-radius:999px;background:#e6f5ed;color:var(--success);font-size:13px;font-weight:700}
     h2{margin:0 0 18px;color:var(--dark);font-size:21px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}
-    label{display:block;margin-bottom:7px;font-size:14px;font-weight:700}input,select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font:16px inherit}
-    input:focus,select:focus{outline:3px solid rgba(23,105,170,.13);border-color:var(--primary)}input.invalid{border-color:var(--error)}
-    .error{display:block;min-height:18px;margin-top:5px;color:var(--error);font-size:13px}.lookup-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.count{margin-top:5px;color:var(--muted);font-size:12px;text-align:right}.count.complete{color:var(--success);font-weight:700}.lookup{padding:6px 10px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:12px}.lookup:disabled{opacity:.45}
+    label{display:block;margin-bottom:7px;font-size:14px;font-weight:700}input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font:16px inherit}
+    input:focus,select:focus,textarea:focus{outline:3px solid rgba(23,105,170,.13);border-color:var(--primary)}input.invalid{border-color:var(--error)}
+    .error{display:block;min-height:18px;margin-top:5px;color:var(--error);font-size:13px}.lookup-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.count{margin-top:5px;color:var(--muted);font-size:12px;text-align:right}.count.complete{color:var(--success);font-weight:700}.lookup{padding:6px 10px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:12px}.lookup:disabled{opacity:.45}.dbd-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.help{color:var(--muted);font-size:12px}label small{font-weight:400;color:var(--muted)}
     .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}button{padding:12px 18px;border-radius:8px;font:700 15px inherit;cursor:pointer}button:disabled{opacity:.65;cursor:wait}.secondary{border:1px solid var(--border);background:#fff;color:var(--text)}.primary{min-width:230px;border:0;background:var(--primary);color:#fff}.primary:hover:not(:disabled){background:var(--dark)}
     #status{min-height:24px;margin-top:14px;line-height:1.6;text-align:right}#status.success{color:var(--success)}#status.loading{color:var(--primary)}#status.error{padding:12px;border:1px solid #efb0b0;border-radius:8px;background:#fff4f4;color:var(--error);text-align:left}
     .note{margin-top:24px;padding:14px;border-left:4px solid #d99a1c;border-radius:7px;background:#fff8e1;color:#74570f;font-size:13px;line-height:1.7}.note code{padding:2px 5px;border-radius:4px;background:#fff}
@@ -28,22 +28,22 @@
 <body>
 <header><div><h1>ระบบสร้างเอกสาร PDF</h1><p>PDF ต้นฉบับอยู่ในโฟลเดอร์ Consent ระดับเดียวกับไฟล์ index.html และข้อมูลทั้งหมดประมวลผลใน Browser</p></div></header>
 <main><section class="card">
-  <div class="privacy">ข้อมูลไม่ถูกส่งไปบันทึกบน Server | Mapping แยก 2 ไฟล์</div>
+  <div class="privacy">NCB Form V1</div>
   <form id="pdfForm" novalidate>
-    <h2>ข้อมูลนิติบุคคล</h2>
-    <div class="grid">
-      <div class="full"><label for="template">เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option value="both" selected>สร้างทั้งสองไฟล์ (ค่าเริ่มต้น)</option><option value="application">TOLC Consent &amp; Application</option><option value="disclosure">Consent for Disclosure Information</option></select></div>
-      <div class="full"><label for="companyName">ข้าพเจ้า (นิติบุคคลชื่อ) *</label><input id="companyName" name="companyName" maxlength="150" placeholder="เช่น บริษัท ตัวอย่าง จำกัด" required><small id="companyNameError" class="error"></small></div>
-      <div><label for="companyType">ประเภทนิติบุคคล</label><select id="companyType" name="companyType"><option value="">-- เลือกประเภท --</option><option>บริษัทจำกัด</option><option>บริษัทมหาชนจำกัด</option><option>ห้างหุ้นส่วนจำกัด</option><option>ห้างหุ้นส่วนสามัญนิติบุคคล</option><option>มูลนิธิ</option><option>สมาคม</option><option>อื่น ๆ</option></select></div>
-      <div><label for="companyRegNo">เลขทะเบียนนิติบุคคล 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div class="lookup-row"><div id="digitCount" class="count">0/13 หลัก</div><button type="button" id="dbdLookupButton" class="lookup">เปิด DBD DataWarehouse</button></div><small id="companyRegNoError" class="error"></small></div>
-      <div><label for="phoneNo">หมายเลขโทรศัพท์</label><input id="phoneNo" name="phoneNo" inputmode="tel" maxlength="20" placeholder="021234567"></div>
-      <div><label for="registrarOffice">หน่วยงานที่ออกทะเบียน</label><input id="registrarOffice" name="registrarOffice" maxlength="180" value="กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์"></div>
-      <div><label for="authorizedName">ผู้มีอำนาจกระทำการ คนที่ 1</label><input id="authorizedName" name="authorizedName" maxlength="120" placeholder="ชื่อ-นามสกุล"></div>
-      <div><label for="authorizedName2">ผู้มีอำนาจกระทำการ คนที่ 2</label><input id="authorizedName2" name="authorizedName2" maxlength="120" placeholder="ชื่อ-นามสกุล"></div>
-    </div>
-    <div class="actions"><button type="reset" class="secondary">ล้างข้อมูล</button><button type="submit" id="submitButton" class="primary">สร้างและดาวน์โหลด PDF</button></div>
-    <div id="status" aria-live="polite"></div>
-  </form>
+<h2>ข้อมูลนิติบุคคล</h2><div class="grid">
+<div class="full"><label for="template">เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option value="both" selected>สร้างทั้งสองไฟล์ (ค่าเริ่มต้น)</option><option value="application">Consent &amp; Application</option><option value="disclosure">Consent เปิดเผยข้อมูล</option></select></div>
+<div class="full"><label for="consentPlace">ทำที่ <small>(Consent)</small></label><input id="consentPlace" name="consentPlace" maxlength="150" value="บริษัท ไทยโอริกซ์ลีสซิ่ง จำกัด"></div>
+<div class="full dbd-actions"><button type="button" id="dbdHomeButton" class="lookup">เปิด DBD DataWarehouse</button><button type="button" id="dbdLookupButton" class="lookup">ค้นหาที่ DBD</button><span class="help">ตัวอย่าง 0105542073726</span></div>
+<div class="full"><label for="companyName">ข้าพเจ้า (นิติบุคคลชื่อ) *</label><input id="companyName" name="companyName" maxlength="150" placeholder="ชื่อบริษัท/นิติบุคคล" required><small id="companyNameError" class="error"></small></div>
+<div><label for="companyType">ประเภทนิติบุคคล <small>(Consent)</small></label><select id="companyType" name="companyType"><option value="">-- เลือกประเภท --</option><option>บริษัทจำกัด</option><option>บริษัทมหาชนจำกัด</option><option>ห้างหุ้นส่วนจำกัด</option><option>ห้างหุ้นส่วนสามัญนิติบุคคล</option><option>มูลนิธิ</option><option>สมาคม</option><option>อื่น ๆ</option></select></div>
+<div><label for="companyRegNo">ทะเบียนนิติบุคคลเลขที่ 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div id="digitCount" class="count">0/13 หลัก</div><small id="companyRegNoError" class="error"></small></div>
+<div><label for="registrationDate">วันที่จดทะเบียน</label><input type="date" id="registrationDate" name="registrationDate"></div>
+<div class="full"><label for="companyAddress">ที่อยู่บริษัท <small>(Application)</small></label><textarea id="companyAddress" name="companyAddress" rows="3" maxlength="500" placeholder="เลขที่ ถนน ตำบล/แขวง อำเภอ/เขต จังหวัด รหัสไปรษณีย์"></textarea></div>
+<div><label for="phoneNo">หมายเลขโทรศัพท์</label><input id="phoneNo" name="phoneNo" inputmode="tel" maxlength="20" placeholder="021234567"></div>
+<div><label for="authorizedName">ผู้มีอำนาจกระทำการ คนที่ 1</label><input id="authorizedName" name="authorizedName" maxlength="120" placeholder="ชื่อ-นามสกุล"></div>
+<div><label for="authorizedName2">ผู้มีอำนาจกระทำการ คนที่ 2</label><input id="authorizedName2" name="authorizedName2" maxlength="120" placeholder="ชื่อ-นามสกุล"></div>
+<div class="full"><label for="registrarOffice">หน่วยงานที่ออกทะเบียน <small>(Consent)</small></label><input id="registrarOffice" name="registrarOffice" maxlength="180" value="กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์"></div>
+</div><div class="actions"><button type="reset" class="secondary">ล้างข้อมูล</button><button type="submit" id="submitButton" class="primary">สร้างและดาวน์โหลด PDF</button></div><div id="status" aria-live="polite"></div></form>
   <div class="note"><strong>ตำแหน่งไฟล์:</strong> ให้วาง <code>index.html</code>, <code>template-application.pdf</code> และ <code>template-disclosure.pdf</code> ไว้ระดับเดียวกันใน Branch <code>main</code></div>
 </section></main>
 
@@ -68,6 +68,7 @@ const digitCount=document.getElementById('digitCount');
 const submitButton=document.getElementById('submitButton');
 const statusBox=document.getElementById('status');
 const dbdLookupButton=document.getElementById('dbdLookupButton');
+const dbdHomeButton=document.getElementById('dbdHomeButton');
 
 function setError(name,message=''){
   const input=document.getElementById(name);
@@ -99,13 +100,17 @@ function drawFields(pages,thaiFont,latinFont,data,fields,rgb){
   }
 }
 function drawRegistration(pages,latinFont,value,config,rgb){
-  if(!Array.isArray(config.centers)||config.centers.length!==13) throw new Error('Mapping เลขทะเบียนต้องมีพิกัดครบ 13 ช่อง');
-  [...value].forEach((digit,index)=>{
-    const width=latinFont.widthOfTextAtSize(digit,config.size);
-    pages[config.page].drawText(digit,{x:config.centers[index]-width/2,y:config.y,size:config.size,font:latinFont,color:rgb(0,0,0)});
-  });
+  const page=pages[config.page];
+  if(!page) throw new Error('ไม่พบหน้า PDF สำหรับเลขทะเบียน');
+  if(config.mode==='continuous'){
+    page.drawText(value,{x:config.x,y:config.y,size:config.size,font:latinFont,color:rgb(0,0,0)}); return;
+  }
+  if(!Array.isArray(config.centers)||config.centers.length!==13) throw new Error('Mapping เลขทะเบียนแบบแยกช่องต้องมีพิกัดครบ 13 ช่อง');
+  [...value].forEach((digit,index)=>{const width=latinFont.widthOfTextAtSize(digit,config.size);page.drawText(digit,{x:config.centers[index]-width/2,y:config.y,size:config.size,font:latinFont,color:rgb(0,0,0)});});
 }
+function formatDate(value){if(!value)return '';const [y,m,d]=value.split('-');return `${d}/${m}/${y}`;}
 async function createPdf(data){
+  data={...data,registrationDate:formatDate(data.registrationDate)};
   if(typeof PDFLib==='undefined') throw new Error('โหลด pdf-lib ไม่สำเร็จ กรุณาตรวจสอบการเข้าถึง cdn.jsdelivr.net');
   if(typeof fontkit==='undefined') throw new Error('โหลด fontkit ไม่สำเร็จ กรุณาตรวจสอบการเข้าถึง cdn.jsdelivr.net');
   const {PDFDocument,StandardFonts,rgb}=PDFLib;
@@ -138,8 +143,11 @@ regInput.addEventListener('input',function(){
   digitCount.classList.toggle('complete',this.value.length===13);
   if(this.value.length===13) setError('companyRegNo');
 });
+dbdHomeButton.addEventListener('click',()=>window.open('https://datawarehouse.dbd.go.th/','_blank','noopener,noreferrer'));
 dbdLookupButton.addEventListener('click',()=>{
-  window.open('https://datawarehouse.dbd.go.th/','_blank','noopener,noreferrer');
+  const juristicId=regInput.value;
+  if(!/^\d{13}$/.test(juristicId)){setError('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');return;}
+  window.open('https://datawarehouse.dbd.go.th/company/profile/5'+juristicId,'_blank','noopener,noreferrer');
 });
 phoneInput.addEventListener('input',function(){this.value=this.value.replace(/[^\d+\- ]/g,'').slice(0,20);});
 form.addEventListener('reset',()=>setTimeout(()=>{setError('companyName');setError('companyRegNo');digitCount.textContent='0/13 หลัก';digitCount.classList.remove('complete');statusBox.className='';statusBox.textContent='';},0));
