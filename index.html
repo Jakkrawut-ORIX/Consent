@@ -9,25 +9,207 @@
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
 <style>
-    :root{--primary:#1769aa;--dark:#104f82;--bg:#f3f6f9;--text:#243b53;--muted:#627d98;--border:#bcccdc;--error:#c62828;--success:#08783e}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
-    header{background:linear-gradient(135deg,var(--dark),var(--primary));color:#fff;padding:28px 20px}header>div{max-width:900px;margin:auto}h1{margin:0 0 8px;font-size:28px}header p{margin:0;color:#d7eafa;line-height:1.6}
-    main{max-width:900px;margin:28px auto;padding:0 16px 40px}.card{background:#fff;padding:26px;border-radius:14px;box-shadow:0 8px 28px rgba(15,45,70,.1)}
-    .input-heading{margin-top:26px}.privacy{display:inline-block;margin-bottom:22px;padding:8px 12px;border-radius:999px;background:#e6f5ed;color:var(--success);font-size:13px;font-weight:700}
-    h2{margin:0 0 18px;color:var(--dark);font-size:21px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}
-    label{display:block;margin-bottom:7px;font-size:14px;font-weight:700}input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font:16px inherit}
-    input:focus,select:focus,textarea:focus{outline:3px solid rgba(23,105,170,.13);border-color:var(--primary)}input.invalid{border-color:var(--error)}
-    .error{display:block;min-height:18px;margin-top:5px;color:var(--error);font-size:13px}.lookup-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.count{margin-top:5px;color:var(--muted);font-size:12px;text-align:right}.count.complete{color:var(--success);font-weight:700}.lookup{padding:6px 10px;border:1px solid var(--primary);background:#fff;color:var(--primary);font-size:12px}.lookup:disabled{opacity:.45}.dbd-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.help{color:var(--muted);font-size:12px}label small{font-weight:400;color:var(--muted)}
-    .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}button{padding:12px 18px;border-radius:8px;font:700 15px inherit;cursor:pointer}button:disabled{opacity:.65;cursor:wait}.secondary{border:1px solid var(--border);background:#fff;color:var(--text)}.primary{min-width:230px;border:0;background:var(--primary);color:#fff}.primary:hover:not(:disabled){background:var(--dark)}
-    #status{min-height:24px;margin-top:14px;line-height:1.6;text-align:right}#status.success{color:var(--success)}#status.loading{color:var(--primary)}#status.error{padding:12px;border:1px solid #efb0b0;border-radius:8px;background:#fff4f4;color:var(--error);text-align:left}
-    .note{margin-top:24px;padding:14px;border-left:4px solid #d99a1c;border-radius:7px;background:#fff8e1;color:#74570f;font-size:13px;line-height:1.7}.note code{padding:2px 5px;border-radius:4px;background:#fff}
-    .registration-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}.registration-toolbar .count{flex-shrink:0;margin-top:0;text-align:left;white-space:nowrap}.dbd-buttons{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}.dbd-buttons .lookup,.dbd-buttons .help{white-space:nowrap}@media(max-width:680px){h1{font-size:23px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.actions{flex-direction:column-reverse}.actions button{width:100%}.card{padding:19px}.registration-toolbar{align-items:flex-start;flex-direction:column}.dbd-buttons{justify-content:flex-start}.dbd-buttons .help{width:100%}}
-  </style>
+:root {
+  --primary: #0b67a3;
+  --primary-dark: #084d7a;
+  --primary-soft: #eaf5fc;
+  --surface: #ffffff;
+  --background: #eef4f8;
+  --text: #17324a;
+  --muted: #637b8d;
+  --border: #cedbe5;
+  --error: #bd2c2c;
+  --success: #087846;
+  --warning: #9a6700;
+  --shadow: 0 18px 50px rgba(19, 55, 82, .10);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(42, 142, 198, .13), transparent 26rem),
+    linear-gradient(180deg, #f7fbfe 0, var(--background) 26rem);
+  color: var(--text);
+  font-family: Tahoma, "Noto Sans Thai", Arial, sans-serif;
+}
+
+header {
+  padding: 34px 20px 65px;
+  background: linear-gradient(125deg, #073b61 0%, #0b67a3 58%, #1885bd 100%);
+  color: #fff;
+}
+header > div { max-width: 1040px; margin: auto; }
+header h1 { margin: 0 0 8px; font-size: clamp(25px, 4vw, 34px); letter-spacing: -.4px; }
+header p { max-width: 760px; margin: 0; color: #d9effc; line-height: 1.7; }
+
+main { max-width: 1040px; margin: -36px auto 0; padding: 0 18px 52px; }
+.card {
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,.86);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.97);
+  box-shadow: var(--shadow);
+}
+
+.privacy {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 26px;
+  padding: 8px 13px;
+  border: 1px solid #bfe5cf;
+  border-radius: 999px;
+  background: #edfaf2;
+  color: var(--success);
+  font-size: 12px;
+  font-weight: 700;
+}
+.privacy::before { content: "✓"; margin-right: 7px; }
+
+h2 {
+  margin: 0 0 16px;
+  color: var(--primary-dark);
+  font-size: 20px;
+}
+.input-heading {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #e5edf3;
+}
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.full { grid-column: 1 / -1; }
+label { display: block; margin-bottom: 7px; color: #29465d; font-size: 13px; font-weight: 700; }
+label small { color: var(--muted); font-weight: 400; }
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: 15px inherit;
+  transition: border-color .18s, box-shadow .18s, background .18s;
+}
+input, select { min-height: 45px; padding: 10px 12px; }
+textarea { min-height: 92px; padding: 11px 12px; line-height: 1.55; resize: vertical; }
+input:hover, select:hover, textarea:hover { border-color: #9eb7ca; }
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fcfeff;
+  box-shadow: 0 0 0 4px rgba(11, 103, 163, .12);
+}
+input.invalid { border-color: var(--error); box-shadow: 0 0 0 3px rgba(189,44,44,.08); }
+
+.error { display: block; min-height: 18px; margin-top: 5px; color: var(--error); font-size: 12px; }
+.count { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.count.complete { color: var(--success); font-weight: 700; }
+
+.registration-field {
+  padding: 16px;
+  border: 1px solid #cfe4f2;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #f7fcff, #f2f9fd);
+}
+.registration-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 9px;
+}
+.dbd-buttons { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.lookup {
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--primary);
+  font: 700 12px inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .18s, color .18s, transform .18s;
+}
+.lookup:hover { color: #fff; background: var(--primary); transform: translateY(-1px); }
+.help { color: var(--muted); font-size: 11px; white-space: nowrap; }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+  margin-top: 27px;
+  padding-top: 22px;
+  border-top: 1px solid #e5edf3;
+}
+button { font-family: inherit; }
+.actions button {
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .18s, box-shadow .18s, background .18s;
+}
+.actions button:hover:not(:disabled) { transform: translateY(-1px); }
+button:disabled { opacity: .6; cursor: wait; }
+.secondary { border: 1px solid var(--border); background: #fff; color: var(--text); }
+.secondary:hover:not(:disabled) { background: #f4f8fb; }
+.primary {
+  min-width: 235px;
+  border: 0;
+  background: linear-gradient(135deg, var(--primary), #1685ba);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(11,103,163,.22);
+}
+.primary:hover:not(:disabled) { box-shadow: 0 11px 22px rgba(11,103,163,.28); }
+
+#status { min-height: 24px; margin-top: 14px; line-height: 1.6; text-align: right; font-size: 13px; }
+#status.success { color: var(--success); }
+#status.loading { color: var(--primary); }
+#status.error {
+  padding: 12px;
+  border: 1px solid #efb0b0;
+  border-radius: 9px;
+  background: #fff4f4;
+  color: var(--error);
+  text-align: left;
+}
+.note {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-left: 4px solid #d99a1c;
+  border-radius: 8px;
+  background: #fff9e9;
+  color: #74570f;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.note code { padding: 2px 5px; border-radius: 4px; background: #fff; }
+
+@media (max-width: 720px) {
+  header { padding: 27px 18px 54px; }
+  main { margin-top: -29px; padding-inline: 12px; }
+  .card { padding: 19px; border-radius: 13px; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .full { grid-column: auto; }
+  .registration-toolbar { align-items: flex-start; flex-direction: column; }
+  .dbd-buttons { justify-content: flex-start; }
+  .dbd-buttons .help { width: 100%; }
+  .actions { flex-direction: column-reverse; }
+  .actions button { width: 100%; }
+}
+</style>
 </head>
 <body>
-<header><div><h1>ระบบสร้างเอกสาร PDF</h1><p>PDF ต้นฉบับอยู่ในโฟลเดอร์ Consent ระดับเดียวกับไฟล์ index.html และข้อมูลทั้งหมดประมวลผลใน Browser</p></div></header>
+<header><div><h1>ระบบสร้างเอกสาร PDF</h1><p>กรอกข้อมูลครั้งเดียว แล้วสร้างเอกสาร Consent และ Application จาก PDF ต้นฉบับได้ทันที</p></div></header>
 <main><section class="card">
-<div class="privacy">ข้อมูลไม่ถูกส่งไปบันทึกบน Server | Mapping แยก 2 ไฟล์ | Fields v8</div>
+<div class="privacy">ประมวลผลใน Browser ข้อมูลไม่ถูกส่งไปบันทึกบน Server | Fields v9</div>
 <form id="pdfForm" novalidate="">
 <h2>เลือกเอกสาร</h2><div class="grid">
 <div class="full"><label for="template">เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option selected="" value="both">สร้างทั้งสองไฟล์ (ค่าเริ่มต้น)</option><option value="application">Consent &amp; Application</option><option value="disclosure">Consent เปิดเผยข้อมูล</option></select></div>
