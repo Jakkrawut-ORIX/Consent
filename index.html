@@ -14,7 +14,7 @@
     *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
     header{background:linear-gradient(135deg,var(--dark),var(--primary));color:#fff;padding:28px 20px}header>div{max-width:900px;margin:auto}h1{margin:0 0 8px;font-size:28px}header p{margin:0;color:#d7eafa;line-height:1.6}
     main{max-width:900px;margin:28px auto;padding:0 16px 40px}.card{background:#fff;padding:26px;border-radius:14px;box-shadow:0 8px 28px rgba(15,45,70,.1)}
-    .privacy{display:inline-block;margin-bottom:22px;padding:8px 12px;border-radius:999px;background:#e6f5ed;color:var(--success);font-size:13px;font-weight:700}
+    .input-heading{margin-top:26px}.privacy{display:inline-block;margin-bottom:22px;padding:8px 12px;border-radius:999px;background:#e6f5ed;color:var(--success);font-size:13px;font-weight:700}
     h2{margin:0 0 18px;color:var(--dark);font-size:21px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}
     label{display:block;margin-bottom:7px;font-size:14px;font-weight:700}input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font:16px inherit}
     input:focus,select:focus,textarea:focus{outline:3px solid rgba(23,105,170,.13);border-color:var(--primary)}input.invalid{border-color:var(--error)}
@@ -28,15 +28,19 @@
 <body>
 <header><div><h1>ระบบสร้างเอกสาร PDF</h1><p>PDF ต้นฉบับอยู่ในโฟลเดอร์ Consent ระดับเดียวกับไฟล์ index.html และข้อมูลทั้งหมดประมวลผลใน Browser</p></div></header>
 <main><section class="card">
-  <div class="privacy">NCB Form V1</div>
+  <div class="privacy">ข้อมูลไม่ถูกส่งไปบันทึกบน Server | Mapping แยก 2 ไฟล์ | Fields v6</div>
   <form id="pdfForm" novalidate>
-<h2>ข้อมูลนิติบุคคล</h2><div class="grid">
+<h2>เลือกเอกสาร</h2><div class="grid">
 <div class="full"><label for="template">เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option value="both" selected>สร้างทั้งสองไฟล์ (ค่าเริ่มต้น)</option><option value="application">Consent &amp; Application</option><option value="disclosure">Consent เปิดเผยข้อมูล</option></select></div>
-<div class="full"><label for="consentPlace">ทำที่ <small>(Consent)</small></label><input id="consentPlace" name="consentPlace" maxlength="150" value="บริษัท ไทยโอริกซ์ลีสซิ่ง จำกัด"></div>
+</div>
+<h2 class="input-heading">ข้อมูลสำหรับกรอกเอกสาร</h2>
+<div class="grid">
+<div class="full"><label for="companyRegNo">ทะเบียนนิติบุคคลเลขที่ 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div id="digitCount" class="count">0/13 หลัก</div><small id="companyRegNoError" class="error"></small></div>
 <div class="full dbd-actions"><button type="button" id="dbdHomeButton" class="lookup">เปิด DBD DataWarehouse</button><button type="button" id="dbdLookupButton" class="lookup">ค้นหาที่ DBD</button><span class="help">ตัวอย่าง 0105542073726</span></div>
+<div class="full"><label for="consentPlace">ทำที่ <small>(Consent)</small></label><input id="consentPlace" name="consentPlace" maxlength="150" value="บริษัท ไทยโอริกซ์ลีสซิ่ง จำกัด"></div>
 <div class="full"><label for="companyName">ข้าพเจ้า (นิติบุคคลชื่อ) *</label><input id="companyName" name="companyName" maxlength="150" placeholder="ชื่อบริษัท/นิติบุคคล" required><small id="companyNameError" class="error"></small></div>
 <div><label for="companyType">ประเภทนิติบุคคล <small>(Consent)</small></label><select id="companyType" name="companyType"><option value="">-- เลือกประเภท --</option><option>บริษัทจำกัด</option><option>บริษัทมหาชนจำกัด</option><option>ห้างหุ้นส่วนจำกัด</option><option>ห้างหุ้นส่วนสามัญนิติบุคคล</option><option>มูลนิธิ</option><option>สมาคม</option><option>อื่น ๆ</option></select></div>
-<div><label for="companyRegNo">ทะเบียนนิติบุคคลเลขที่ 13 หลัก *</label><input id="companyRegNo" name="companyRegNo" inputmode="numeric" maxlength="13" autocomplete="off" placeholder="0105542073726" required><div id="digitCount" class="count">0/13 หลัก</div><small id="companyRegNoError" class="error"></small></div>
+
 <div><label for="registrationDate">วันที่จดทะเบียน</label><input type="date" id="registrationDate" name="registrationDate"></div>
 <div class="full"><label for="companyAddress">ที่อยู่บริษัท <small>(Application)</small></label><textarea id="companyAddress" name="companyAddress" rows="3" maxlength="500" placeholder="เลขที่ ถนน ตำบล/แขวง อำเภอ/เขต จังหวัด รหัสไปรษณีย์"></textarea></div>
 <div><label for="phoneNo">หมายเลขโทรศัพท์</label><input id="phoneNo" name="phoneNo" inputmode="tel" maxlength="20" placeholder="021234567"></div>
