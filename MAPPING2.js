@@ -5,10 +5,11 @@ const MAPPING2 = {
   output: 'disclosure-consent-filled.pdf',
   fields: {
     companyName:     { page: 0, x: 178, y: 542, size: 8, maxWidth: 185 },
-    registration:   { page: 0, x: 194, y: 528, size: 8, maxWidth: 130 },
+    registrationDate: {page:0, x:418,y:528,size:10,maxWidth:120},
     phoneNo:         { page: 0, x: 178, y: 468, size: 8, maxWidth: 190 },
     authorizedName:  { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
     authorizedName2: { page: 0, x: 418, y: 512, size: 8, maxWidth: 130 },
   
   },
+  registration:   { mode:'continuous',page: 0, x: 194, y: 528, size: 8, maxWidth: 130 },
 };
