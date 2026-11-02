@@ -1,12 +1,16 @@
 // MAPPING2: template-application.pdf
 // ใบคำขอสินเชื่อ
-// ทะเบียนนิติบุคคลแสดงแบบต่อเนื่อง
+// ใช้เฉพาะ template-application.pdf
 // PDF coordinate เริ่มจากมุมซ้ายล่าง
+// หมายเหตุ: พิกัดเดิมที่ยืนยันแล้วห้ามแก้
 
 const MAPPING2 = {
   file: './template-application.pdf',
 
   fields: {
+    // ========================================
+    // พิกัดเดิมที่ยืนยันแล้ว (ห้ามแก้)
+    // ========================================
     companyName: {
       page: 0,
       x: 178,
@@ -54,9 +58,242 @@ const MAPPING2 = {
       y: 512,
       size: 8,
       maxWidth: 130
+    },
+
+    // ========================================
+    // ฟิลด์ใหม่: พิกัดชั่วคราวตามแบบฟอร์ม
+    // ปรับได้เฉพาะส่วนนี้
+    // ========================================
+    faxNo: {
+      page: 0,
+      x: 405,
+      y: 466,
+      size: 8,
+      maxWidth: 120
+    },
+
+    contactName1: {
+      page: 0,
+      x: 165,
+      y: 432,
+      size: 8,
+      maxWidth: 140
+    },
+
+    contactPhone1: {
+      page: 0,
+      x: 320,
+      y: 432,
+      size: 8,
+      maxWidth: 110
+    },
+
+    contactEmail1: {
+      page: 0,
+      x: 440,
+      y: 432,
+      size: 8,
+      maxWidth: 120
+    },
+
+    contactName2: {
+      page: 0,
+      x: 165,
+      y: 415,
+      size: 8,
+      maxWidth: 140
+    },
+
+    contactPhone2: {
+      page: 0,
+      x: 320,
+      y: 415,
+      size: 8,
+      maxWidth: 110
+    },
+
+    contactEmail2: {
+      page: 0,
+      x: 440,
+      y: 415,
+      size: 8,
+      maxWidth: 120
+    },
+
+    loanType: {
+      page: 0,
+      x: 165,
+      y: 390,
+      size: 8,
+      maxWidth: 250
+    },
+
+    // รายการทรัพย์สิน แถวที่ 1
+    itemQty1: {
+      page: 0,
+      x: 70,
+      y: 284,
+      size: 8,
+      maxWidth: 40
+    },
+
+    itemCondition1: {
+      page: 0,
+      x: 115,
+      y: 284,
+      size: 8,
+      maxWidth: 45
+    },
+
+    itemBrand1: {
+      page: 0,
+      x: 165,
+      y: 284,
+      size: 8,
+      maxWidth: 80
+    },
+
+    itemDetail1: {
+      page: 0,
+      x: 250,
+      y: 284,
+      size: 8,
+      maxWidth: 180
+    },
+
+    itemPrice1: {
+      page: 0,
+      x: 470,
+      y: 284,
+      size: 8,
+      maxWidth: 70
+    },
+
+    // รายการทรัพย์สิน แถวที่ 2
+    itemQty2: {
+      page: 0,
+      x: 70,
+      y: 266,
+      size: 8,
+      maxWidth: 40
+    },
+
+    itemCondition2: {
+      page: 0,
+      x: 115,
+      y: 266,
+      size: 8,
+      maxWidth: 45
+    },
+
+    itemBrand2: {
+      page: 0,
+      x: 165,
+      y: 266,
+      size: 8,
+      maxWidth: 80
+    },
+
+    itemDetail2: {
+      page: 0,
+      x: 250,
+      y: 266,
+      size: 8,
+      maxWidth: 180
+    },
+
+    itemPrice2: {
+      page: 0,
+      x: 470,
+      y: 266,
+      size: 8,
+      maxWidth: 70
+    },
+
+    // รายการทรัพย์สิน แถวที่ 3
+    itemQty3: {
+      page: 0,
+      x: 70,
+      y: 248,
+      size: 8,
+      maxWidth: 40
+    },
+
+    itemCondition3: {
+      page: 0,
+      x: 115,
+      y: 248,
+      size: 8,
+      maxWidth: 45
+    },
+
+    itemBrand3: {
+      page: 0,
+      x: 165,
+      y: 248,
+      size: 8,
+      maxWidth: 80
+    },
+
+    itemDetail3: {
+      page: 0,
+      x: 250,
+      y: 248,
+      size: 8,
+      maxWidth: 180
+    },
+
+    itemPrice3: {
+      page: 0,
+      x: 470,
+      y: 248,
+      size: 8,
+      maxWidth: 70
+    },
+
+    // รายการทรัพย์สิน แถวที่ 4
+    itemQty4: {
+      page: 0,
+      x: 70,
+      y: 230,
+      size: 8,
+      maxWidth: 40
+    },
+
+    itemCondition4: {
+      page: 0,
+      x: 115,
+      y: 230,
+      size: 8,
+      maxWidth: 45
+    },
+
+    itemBrand4: {
+      page: 0,
+      x: 165,
+      y: 230,
+      size: 8,
+      maxWidth: 80
+    },
+
+    itemDetail4: {
+      page: 0,
+      x: 250,
+      y: 230,
+      size: 8,
+      maxWidth: 180
+    },
+
+    itemPrice4: {
+      page: 0,
+      x: 470,
+      y: 230,
+      size: 8,
+      maxWidth: 70
     }
   },
 
+  // พิกัดเดิมทะเบียนนิติบุคคล (ห้ามแก้)
   registration: {
     mode: 'continuous',
     page: 0,
