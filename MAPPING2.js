@@ -18,7 +18,7 @@ const MAPPING2 = {
     registrationDate: {
       page: 0,
       x: 418,
-      y: 528,
+      y: 526,
       size: 8,
       maxWidth: 120
     },
@@ -35,7 +35,7 @@ const MAPPING2 = {
     phoneNo: {
       page: 0,
       x: 178,
-      y: 468,
+      y: 466,
       size: 8,
       maxWidth: 190
     },
@@ -61,7 +61,7 @@ const MAPPING2 = {
     mode: 'continuous',
     page: 0,
     x: 194,
-    y: 528,
+    y: 526,
     size: 8,
     maxWidth: 130
   }
