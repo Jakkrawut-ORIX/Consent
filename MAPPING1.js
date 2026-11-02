@@ -10,7 +10,7 @@ const MAPPING1 = {
     consentPlace: {
       page: 0,
       x: 386,
-      y: 724,
+      y: 722,
       size: 10,
       maxWidth: 165
     },
@@ -34,7 +34,7 @@ const MAPPING1 = {
     registrationDate: {
       page: 0,
       x: 138,
-      y: 472,
+      y: 470,
       size: 10,
       maxWidth: 110
     },
@@ -42,7 +42,7 @@ const MAPPING1 = {
     phoneNo: {
       page: 0,
       x: 420,
-      y: 472,
+      y: 470,
       size: 10,
       maxWidth: 100
     },
@@ -50,7 +50,7 @@ const MAPPING1 = {
     authorizedName: {
       page: 0,
       x: 96,
-      y: 450,
+      y: 448,
       size: 10,
       maxWidth: 125
     },
@@ -58,7 +58,7 @@ const MAPPING1 = {
     authorizedName2: {
       page: 0,
       x: 340,
-      y: 450,
+      y: 448,
       size: 10,
       maxWidth: 130
     },
