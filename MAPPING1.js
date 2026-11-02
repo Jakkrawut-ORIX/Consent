@@ -18,7 +18,7 @@ const MAPPING1 = {
     companyName: {
       page: 0,
       x: 164,
-      y: 156,
+      y: 514,
       size: 10,
       maxWidth: 185
     },
@@ -26,7 +26,7 @@ const MAPPING1 = {
     companyType: {
       page: 0,
       x: 442,
-      y: 156,
+      y: 514,
       size: 10,
       maxWidth: 130
     },
@@ -34,7 +34,7 @@ const MAPPING1 = {
     registrationDate: {
       page: 0,
       x: 138,
-      y: 474,
+      y: 472,
       size: 10,
       maxWidth: 110
     },
@@ -42,7 +42,7 @@ const MAPPING1 = {
     phoneNo: {
       page: 0,
       x: 420,
-      y: 474,
+      y: 472,
       size: 10,
       maxWidth: 100
     },
@@ -50,7 +50,7 @@ const MAPPING1 = {
     authorizedName: {
       page: 0,
       x: 96,
-      y: 452,
+      y: 450,
       size: 10,
       maxWidth: 125
     },
@@ -58,7 +58,7 @@ const MAPPING1 = {
     authorizedName2: {
       page: 0,
       x: 340,
-      y: 452,
+      y: 450,
       size: 10,
       maxWidth: 130
     },
@@ -66,7 +66,7 @@ const MAPPING1 = {
     registrarOffice: {
       page: 0,
       x: 410,
-      y: 432,
+      y: 430,
       size: 10,
       maxWidth: 140
     }
@@ -75,7 +75,7 @@ const MAPPING1 = {
   registration: {
     mode: 'split',
     page: 0,
-    y: 492,
+    y: 490,
     size: 10,
     centers: [
       248,
