@@ -6,13 +6,15 @@
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
 <style>
-:root{--p:#0b67a3;--pd:#084d7a;--t:#17324a;--m:#637b8d;--b:#cedbe5;--e:#bd2c2c;--s:#087846}*{box-sizing:border-box}body{margin:0;background:linear-gradient(#f7fbfe,#eef4f8);color:var(--t);font-family:Tahoma,Arial,sans-serif}header{padding:32px 20px 58px;background:linear-gradient(125deg,#073b61,#0b67a3 58%,#1885bd);color:#fff}header div{max-width:1040px;margin:auto}h1{margin:0;font-size:clamp(24px,4vw,34px)}main{max-width:1040px;margin:-32px auto 0;padding:0 18px 50px}.card{background:#fff;padding:28px;border-radius:16px;box-shadow:0 18px 50px #1237521a}h2{margin:0 0 16px;color:var(--pd);font-size:20px}.input-heading{margin-top:28px;padding-top:24px;border-top:1px solid #e5edf3}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.full{grid-column:1/-1}label{display:block;margin-bottom:7px;font-size:13px;font-weight:700;color:#29465d}label small{font-weight:400;color:var(--m)}input,select,textarea{width:100%;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--t);font:15px inherit}input,select{min-height:45px;padding:10px 12px}textarea{min-height:92px;padding:11px 12px;resize:vertical}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--p);box-shadow:0 0 0 4px #0b67a31f}.registration-field{padding:16px;border:1px solid #cfe4f2;border-radius:13px;background:#f5fbff}.registration-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:9px}.count,.help{font-size:12px;color:var(--m);white-space:nowrap}.count.complete{color:var(--s);font-weight:700}.dbd-buttons{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}.lookup{padding:7px 11px;border:1px solid var(--p);border-radius:8px;background:#fff;color:var(--p);font-weight:700;cursor:pointer}.error{display:block;min-height:18px;margin-top:5px;color:var(--e);font-size:12px}.authorized-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:26px;padding-top:21px;border-top:1px solid #e5edf3}.actions button{padding:11px 18px;border-radius:10px;font-weight:700;cursor:pointer}.secondary{border:1px solid var(--b);background:#fff}.primary{border:0;background:li near-gradient(135deg,var(--p),#1685ba);color:#fff;min-width:235px}button:disabled{opacity:.6;cursor:wait}#status{min-height:24px;margin-top:12px;text-align:right;font-size:13px}#status.success{color:var(--s)}#status.loading{color:var(--p)}#status.error{padding:12px;background:#fff4f4;color:var(--e);text-align:left;border-radius:8px}@media(max-width:720px){header{padding:25px 16px 50px}main{margin-top:-26px;padding:0 12px 40px}.card{padding:18px}.grid{grid-template-columns:1fr;gap:14px}.full{grid-column:auto}.registration-toolbar{align-items:flex-start;flex-direction:column}.dbd-buttons{justify-content:flex-start}.dbd-buttons .help{width:100%}.authorized-row{grid-template-columns:1fr}.actions{flex-direction:column-reverse}.actions button{width:100%}}
+:root{--p:#0b67a3;--pd:#084d7a;--t:#17324a;--m:#637b8d;--b:#cedbe5;--e:#bd2c2c;--s:#087846}*{box-sizing:border-box}body{margin:0;background:linear-gradient(#f7fbfe,#eef4f8);color:var(--t);font-family:Tahoma,Arial,sans-serif}header{padding:32px 20px 58px;background:linear-gradient(125deg,#073b61,#0b67a3 58%,#1885bd);color:#fff}header div{max-width:1040px;margin:auto}h1{margin:0;font-size:clamp(24px,4vw,34px)}main{max-width:1040px;margin:-32px auto 0;padding:0 18px 50px}.card{background:#fff;padding:28px;border-radius:16px;box-shadow:0 18px 50px #1237521a}h2{margin:0 0 16px;color:var(--pd);font-size:20px}.input-heading{margin-top:28px;padding-top:24px;border-top:1px solid #e5edf3}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.full{grid-column:1/-1}label{display:block;margin-bottom:7px;font-size:13px;font-weight:700;color:#29465d}label small{font-weight:400;color:var(--m)}input,select,textarea{width:100%;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--t);font:15px inherit}input,select{min-height:45px;padding:10px 12px}textarea{min-height:92px;padding:11px 12px;resize:vertical}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--p);box-shadow:0 0 0 4px #0b67a31f}.registration-field{padding:16px;border:1px solid #cfe4f2;border-radius:13px;background:#f5fbff}.registration-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:9px}.count,.help{font-size:12px;color:var(--m);white-space:nowrap}.count.complete{color:var(--s);font-weight:700}.dbd-buttons{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}.lookup{padding:7px 11px;border:1px solid var(--p);border-radius:8px;background:#fff;color:var(--p);font-weight:700;cursor:pointer}.error{display:block;min-height:18px;margin-top:5px;color:var(--e);font-size:12px}.authorized-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:26px;padding-top:21px;border-top:1px solid #e5edf3}.actions button{padding:11px 18px;border-radius:10px;font-weight:700;cursor:pointer}.secondary{border:1px solid var(--b);background:#fff}.primary{border:0;background:linear-gradient(135deg,var(--p),#1685ba);color:#fff;min-width:235px}button:disabled{opacity:.6;cursor:wait}#status{min-height:24px;margin-top:12px;text-align:right;font-size:13px}#status.success{color:var(--s)}#status.loading{color:var(--p)}#status.error{padding:12px;background:#fff4f4;color:var(--e);text-align:left;border-radius:8px}@media(max-width:720px){header{padding:25px 16px 50px}main{margin-top:-26px;padding:0 12px 40px}.card{padding:18px}.grid{grid-template-columns:1fr;gap:14px}.full{grid-column:auto}.registration-toolbar{align-items:flex-start;flex-direction:column}.dbd-buttons{justify-content:flex-start}.dbd-buttons .help{width:100%}.authorized-row{grid-template-columns:1fr}.actions{flex-direction:column-reverse}.actions button{width:100%}}
 
+input.invalid,select.invalid,textarea.invalid{border-color:var(--e)}
 .date-help{display:block;margin-top:6px;color:var(--m);font-size:11px;line-height:1.5}
 </style></head><body>
 <header><div><h1>ระบบสร้างหนังสือให้ความยินยอมและใบคำขอสินเชื่อ</h1></div></header>
 <main><section class="card"><form id="pdfForm" novalidate=""><h2>เลือกเอกสาร</h2><div class="grid"><div class="full"><label>เอกสารที่ต้องการสร้าง</label><select id="template" name="template"><option value="both">สร้างทั้งสองไฟล์</option><option value="application">ใบคำขอสินเชื่อ</option><option value="disclosure">หนังสือให้ความยินยอม</option></select></div></div><h2 class="input-heading">ข้อมูลสำหรับกรอกเอกสาร</h2><div class="grid">
 <div class="full"><label>ทำที่ <small>(Consent)</small></label><input id="consentPlace" name="consentPlace" value="บริษัท ไทยโอริกซ์ลีสซิ่ง จำกัด"/></div>
+<div class="full"><label>วันที่ทำเอกสาร <small>(ใช้กับทั้งสองไฟล์ — ปี พ.ศ. คำนวณให้อัตโนมัติ)</small></label><input id="documentDate" name="documentDate" type="date"/></div>
 <div class="full registration-field"><label>ทะเบียนนิติบุคคลเลขที่ 13 หลัก *</label><input id="companyRegNo" inputmode="numeric" maxlength="13" name="companyRegNo" placeholder="0105542073726"/><div class="registration-toolbar"><div class="count" id="digitCount">0/13 หลัก</div><div class="dbd-buttons"><button class="lookup" id="dbdHomeButton" type="button">เปิด DBD DataWarehouse</button><button class="lookup" id="dbdLookupButton" type="button">ค้นหาที่ DBD</button><span class="help">ตัวอย่าง 0105542073726</span></div></div><small class="error" id="companyRegNoError"></small></div>
 <div class="full"><label>ข้าพเจ้า (นิติบุคคลชื่อ) *</label><input id="companyName" name="companyName"/><small class="error" id="companyNameError"></small></div>
 <div><label>ประเภทนิติบุคคล <small>(Consent)</small></label><select id="companyType" name="companyType"><option value="">-- เลือกประเภท --</option><option>บริษัทจำกัด</option><option>บริษัทมหาชนจำกัด</option><option>ห้างหุ้นส่วนจำกัด</option><option>ห้างหุ้นส่วนสามัญนิติบุคคล</option><option>มูลนิธิ</option><option>สมาคม</option><option>อื่น ๆ</option></select></div>
@@ -25,16 +27,115 @@
 <script src="MAPPING1.js"></script><script src="MAPPING2.js"></script>
 <script>
 'use strict';
-const THAI_FONT_URL='https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-thai@5.2.6/files/noto-sans-thai-thai-400-normal.woff';
+//#core-start
+const FONT_BASE='https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-thai@5.2.6/files/';
+const THAI_FONT_URL=FONT_BASE+'noto-sans-thai-thai-400-normal.woff';
+const LATIN_FONT_URL=FONT_BASE+'noto-sans-thai-latin-400-normal.woff';
 const MAPPING={disclosure:MAPPING1,application:MAPPING2};
-const form=document.getElementById('pdfForm'),reg=document.getElementById('companyRegNo'),count=document.getElementById('digitCount'),statusBox=document.getElementById('status'),submit=document.getElementById('submitButton');
-function err(id,msg=''){const el=document.getElementById(id),box=document.getElementById(id+'Error');el?.classList.toggle('invalid',!!msg);if(box)box.textContent=msg}
-function valid(d){let ok=true;err('companyName');err('companyRegNo');if(!d.companyName.trim()){err('companyName','กรุณากรอกชื่อนิติบุคคล');ok=false}if(!/^\d{13}$/.test(d.companyRegNo)){err('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');ok=false}return ok}
+const THAI_MONTHS=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+
 async function bytes(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error(`โหลดไฟล์ไม่สำเร็จ: ${url}`);return new Uint8Array(await r.arrayBuffer())}
 function safe(v){return String(v).replace(/[\\/:*?"<>|]/g,'-').replace(/\s+/g,' ').trim().slice(0,120)}
-async function createPdf(d,type){const {PDFDocument,StandardFonts,rgb}=PDFLib,cfg=MAPPING[type],doc=await PDFDocument.load(await bytes(cfg.file));doc.registerFontkit(fontkit);const thai=await doc.embedFont(await bytes(THAI_FONT_URL),{subset:true}),latin=await doc.embedFont(StandardFonts.Helvetica),pages=doc.getPages();for(const [name,p] of Object.entries(cfg.fields)){const v=String(d[name]||'').trim();if(v)pages[p.page].drawText(v,{x:p.x,y:p.y,size:p.size,font:/[\u0E00-\u0E7F]/.test(v)?thai:latin,color:rgb(0,0,0),maxWidth:p.maxWidth,lineHeight:p.lineHeight||p.size*1.15})}const q=cfg.registration,page=pages[q.page];if(q.mode==='continuous')page.drawText(d.companyRegNo,{x:q.x,y:q.y,size:q.size,font:latin});else[...d.companyRegNo].forEach((n,i)=>page.drawText(n,{x:q.centers[i]-latin.widthOfTextAtSize(n,q.size)/2,y:q.y,size:q.size,font:latin}));const prefix=type==='application'?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';return{data:await doc.save({useObjectStreams:false}),name:`${prefix} - ${safe(d.companyName)}.pdf`}}
+
+/* ---------- วันที่ ---------- */
+function addDateFields(d){
+  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d.documentDate||'');
+  if(!m)return d;
+  const y=+m[1]+543,mo=+m[2],day=+m[3];
+  d.dateDay=String(day);d.dateMonth=THAI_MONTHS[mo-1];d.dateYear=String(y);
+  d.dateShort=`${String(day).padStart(2,'0')}/${String(mo).padStart(2,'0')}/${y}`;
+  return d;
+}
+
+/* ---------- ข้อความ: ไทยใช้ฟอนต์ไทย / ตัวเลข-อังกฤษ-ช่องว่างใช้ฟอนต์ละติน ---------- */
+const isThaiChar=c=>/[\u0E00-\u0E7F\u200B-\u200D]/.test(c);
+function splitRuns(t){const out=[];for(const ch of t){const th=isThaiChar(ch),last=out[out.length-1];if(last&&last.thai===th)last.text+=ch;else out.push({thai:th,text:ch})}return out}
+function measure(t,size,F){return splitRuns(t).reduce((s,r)=>s+(r.thai?F.thai:F.latin).widthOfTextAtSize(r.text,size),0)}
+function drawRuns(page,t,x,y,size,F,rgb){for(const r of splitRuns(t)){const f=r.thai?F.thai:F.latin;page.drawText(r.text,{x,y,size,font:f,color:rgb(0,0,0)});x+=f.widthOfTextAtSize(r.text,size)}}
+function fitSize(t,size,min,max,F){const w=measure(t,size,F);return max&&w>max?Math.max(min,size*max/w):size}
+
+function wrapText(t,max,size,F){
+  const lines=[];
+  for(const para of t.split(/\r?\n/)){
+    let cur='';
+    for(const word of para.split(/(?<=\s)/)){
+      if(measure(cur+word,size,F)<=max){cur+=word;continue}
+      if(cur.trim()){lines.push(cur.trimEnd());cur=''}
+      let piece='';
+      for(const ch of word){if(piece&&measure(piece+ch,size,F)>max){lines.push(piece);piece=''}piece+=ch}
+      cur=piece;
+    }
+    if(cur.trim()||!lines.length)lines.push(cur.trimEnd());
+  }
+  return lines;
+}
+
+function drawField(page,p,value,F,rgb){
+  const min=p.minSize||6.5;
+  if(p.lines>1){
+    let s=p.size,lines;
+    for(;;){lines=wrapText(value,p.maxWidth,s,F);if(lines.length<=p.lines||s<=min)break;s-=.5}
+    if(lines.length>p.lines)lines=[...lines.slice(0,p.lines-1),lines.slice(p.lines-1).join(' ')];
+    const lh=p.lineHeight||s*1.2;
+    lines.forEach((ln,i)=>drawRuns(page,ln,p.x,p.y-i*lh,fitSize(ln,s,5.5,p.maxWidth,F),F,rgb));
+    return;
+  }
+  const s=fitSize(value,p.size,min,p.maxWidth,F),w=measure(value,s,F);
+  const x=p.align==='center'&&p.maxWidth?p.x+(p.maxWidth-w)/2:p.x;
+  drawRuns(page,value,x,p.y,s,F,rgb);
+}
+
+let fontBytesCache;
+async function loadFontBytes(){
+  if(!fontBytesCache)fontBytesCache=(async()=>({thai:await bytes(THAI_FONT_URL),latin:await bytes(LATIN_FONT_URL).catch(()=>null)}))();
+  return fontBytesCache;
+}
+
+async function createPdf(d,type){
+  const {PDFDocument,StandardFonts,rgb}=PDFLib,cfg=MAPPING[type];
+  const doc=await PDFDocument.load(await bytes(cfg.file));
+  doc.registerFontkit(fontkit);
+  const fb=await loadFontBytes();
+  const F={thai:await doc.embedFont(fb.thai,{subset:true}),latin:fb.latin?await doc.embedFont(fb.latin,{subset:true}):await doc.embedFont(StandardFonts.Helvetica)};
+  const pages=doc.getPages();
+
+  for(const [name,p] of Object.entries(cfg.fields)){
+    const v=String(d[name]||'').trim();
+    if(v)drawField(pages[p.page],p,v,F,rgb);
+  }
+
+  const q=cfg.registration,page=pages[q.page],no=d.companyRegNo;
+  if(q.mode==='continuous')drawField(page,{x:q.x,y:q.y,size:q.size,maxWidth:q.maxWidth},no,F,rgb);
+  else[...no].forEach((n,i)=>page.drawText(n,{x:q.centers[i]-F.latin.widthOfTextAtSize(n,q.size)/2,y:q.y,size:q.size,font:F.latin,color:rgb(0,0,0)}));
+
+  const prefix=type==='application'?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';
+  return{data:await doc.save({useObjectStreams:false}),name:`${prefix} - ${safe(d.companyName)}.pdf`};
+}
+//#core-end
+
+const form=document.getElementById('pdfForm'),reg=document.getElementById('companyRegNo'),count=document.getElementById('digitCount'),statusBox=document.getElementById('status'),submit=document.getElementById('submitButton'),dateInput=document.getElementById('documentDate');
+function err(id,msg=''){const el=document.getElementById(id),box=document.getElementById(id+'Error');el?.classList.toggle('invalid',!!msg);if(box)box.textContent=msg}
+function valid(d){let ok=true;err('companyName');err('companyRegNo');if(!d.companyName.trim()){err('companyName','กรุณากรอกชื่อนิติบุคคล');ok=false}if(!/^\d{13}$/.test(d.companyRegNo)){err('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');ok=false}return ok}
 function download(data,name){const u=URL.createObjectURL(new Blob([data],{type:'application/pdf'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),2000)}
+function setToday(){const n=new Date();dateInput.value=`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`}
+setToday();
+
 reg.oninput=()=>{reg.value=reg.value.replace(/\D/g,'').slice(0,13);count.textContent=`${reg.value.length}/13 หลัก`;count.classList.toggle('complete',reg.value.length===13)};
-document.getElementById('dbdHomeButton').onclick=()=>open('https://datawarehouse.dbd.go.th/','_blank');document.getElementById('dbdLookupButton').onclick=()=>{if(!/^\d{13}$/.test(reg.value))return err('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');open('https://datawarehouse.dbd.go.th/company/profile/5'+reg.value,'_blank')};
-form.onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(form));if(!valid(d))return;submit.disabled=true;statusBox.className='loading';statusBox.textContent='กำลังสร้างเอกสาร...';try{for(const type of d.template==='both'?['application','disclosure']:[d.template]){const x=await createPdf(d,type);download(x.data,x.name);await new Promise(r=>setTimeout(r,700))}statusBox.className='success';statusBox.textContent='สร้างเอกสารเรียบร้อยแล้ว'}catch(x){statusBox.className='error';statusBox.textContent=x.message}finally{submit.disabled=false}};
+form.onreset=()=>setTimeout(()=>{count.textContent='0/13 หลัก';count.classList.remove('complete');err('companyName');err('companyRegNo');statusBox.textContent='';statusBox.className='';setToday()});
+document.getElementById('dbdHomeButton').onclick=()=>open('https://datawarehouse.dbd.go.th/','_blank');
+document.getElementById('dbdLookupButton').onclick=()=>{if(!/^\d{13}$/.test(reg.value))return err('companyRegNo','กรุณากรอกเลขทะเบียนให้ครบ 13 หลัก');open('https://datawarehouse.dbd.go.th/company/profile/5'+reg.value,'_blank')};
+
+form.onsubmit=async e=>{
+  e.preventDefault();
+  const d=addDateFields(Object.fromEntries(new FormData(form)));
+  if(!valid(d))return;
+  submit.disabled=true;statusBox.className='loading';statusBox.textContent='กำลังสร้างเอกสาร...';
+  try{
+    for(const type of d.template==='both'?['application','disclosure']:[d.template]){
+      const x=await createPdf(d,type);download(x.data,x.name);await new Promise(r=>setTimeout(r,700));
+    }
+    statusBox.className='success';statusBox.textContent='สร้างเอกสารเรียบร้อยแล้ว';
+  }catch(x){statusBox.className='error';statusBox.textContent=x.message}
+  finally{submit.disabled=false}
+};
 </script></body></html>
