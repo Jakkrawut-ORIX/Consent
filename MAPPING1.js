@@ -15,12 +15,12 @@ const MAPPING1 = {
 
     authorizedName: [
       { page: 0, x: 96, y: 448, size: 10, maxWidth: 125 },
-      { page: 0, x: 308, y: 230, size: 6, maxWidth: 125, align: 'center' }
+      { page: 0, x: 308, y: 230, size: 8, maxWidth: 125, align: 'center' }
     ],
 
     authorizedName2: [
       { page: 0, x: 340, y: 448, size: 10, maxWidth: 130 },
-      { page: 0, x: 398, y: 230, size: 6, maxWidth: 130, align: 'center' }
+      { page: 0, x: 398, y: 230, size: 8, maxWidth: 130, align: 'center' }
     ],
 
     registrarOffice: { page: 0, x: 410, y: 430, size: 10, maxWidth: 140 }
