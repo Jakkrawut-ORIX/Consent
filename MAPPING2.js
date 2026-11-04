@@ -74,24 +74,24 @@ const MAPPING2 = {
 
     contactName1: {
       page: 0,
-      x: 165,
-      y: 432,
+      x: 128,
+      y: 420,
       size: 8,
       maxWidth: 140
     },
 
     contactPhone1: {
       page: 0,
-      x: 320,
-      y: 432,
+      x: 310,
+      y: 420,
       size: 8,
       maxWidth: 110
     },
 
     contactEmail1: {
       page: 0,
-      x: 440,
-      y: 432,
+      x: 390,
+      y: 420,
       size: 8,
       maxWidth: 120
     },
@@ -99,31 +99,31 @@ const MAPPING2 = {
     contactName2: {
       page: 0,
       x: 165,
-      y: 415,
+      y: 405,
       size: 8,
       maxWidth: 140
     },
 
     contactPhone2: {
       page: 0,
-      x: 320,
-      y: 415,
+      x: 310,
+      y: 405,
       size: 8,
       maxWidth: 110
     },
 
     contactEmail2: {
       page: 0,
-      x: 440,
-      y: 415,
+      x: 390,
+      y: 405,
       size: 8,
       maxWidth: 120
     },
 
     loanType: {
       page: 0,
-      x: 165,
-      y: 390,
+      x: 200,
+      y: 360,
       size: 8,
       maxWidth: 250
     },
@@ -131,32 +131,32 @@ const MAPPING2 = {
     // รายการทรัพย์สิน แถวที่ 1
     itemQty1: {
       page: 0,
-      x: 70,
-      y: 284,
+      x: 96,
+      y: 305,
       size: 8,
       maxWidth: 40
     },
 
     itemCondition1: {
       page: 0,
-      x: 115,
-      y: 284,
+      x: 138,
+      y: 305,
       size: 8,
       maxWidth: 45
     },
 
     itemBrand1: {
       page: 0,
-      x: 165,
-      y: 284,
+      x: 200,
+      y: 305,
       size: 8,
       maxWidth: 80
     },
 
     itemDetail1: {
       page: 0,
-      x: 250,
-      y: 284,
+      x: 280,
+      y: 305,
       size: 8,
       maxWidth: 180
     },
@@ -164,7 +164,7 @@ const MAPPING2 = {
     itemPrice1: {
       page: 0,
       x: 470,
-      y: 284,
+      y: 305,
       size: 8,
       maxWidth: 70
     },
@@ -178,26 +178,35 @@ const MAPPING2 = {
       maxWidth: 40
     },
 
+// รายการทรัพย์สิน แถวที่ 2
+    itemQty2: {
+      page: 0,
+      x: 96,
+      y: 288,
+      size: 8,
+      maxWidth: 40
+    },
+
     itemCondition2: {
       page: 0,
-      x: 115,
-      y: 266,
+      x: 138,
+      y: 288,
       size: 8,
       maxWidth: 45
     },
 
     itemBrand2: {
       page: 0,
-      x: 165,
-      y: 266,
+      x: 200,
+      y: 288,
       size: 8,
       maxWidth: 80
     },
 
     itemDetail2: {
       page: 0,
-      x: 250,
-      y: 266,
+      x: 280,
+      y: 288,
       size: 8,
       maxWidth: 180
     },
@@ -205,40 +214,41 @@ const MAPPING2 = {
     itemPrice2: {
       page: 0,
       x: 470,
-      y: 266,
+      y: 288,
       size: 8,
       maxWidth: 70
     },
 
+
     // รายการทรัพย์สิน แถวที่ 3
     itemQty3: {
       page: 0,
-      x: 70,
-      y: 248,
+      x: 96,
+      y: 272,
       size: 8,
       maxWidth: 40
     },
 
     itemCondition3: {
       page: 0,
-      x: 115,
-      y: 248,
+      x: 138,
+      y: 272,
       size: 8,
       maxWidth: 45
     },
 
     itemBrand3: {
       page: 0,
-      x: 165,
-      y: 248,
+      x: 200,
+      y: 272,
       size: 8,
       maxWidth: 80
     },
 
     itemDetail3: {
       page: 0,
-      x: 250,
-      y: 248,
+      x: 280,
+      y: 272,
       size: 8,
       maxWidth: 180
     },
@@ -246,40 +256,40 @@ const MAPPING2 = {
     itemPrice3: {
       page: 0,
       x: 470,
-      y: 248,
+      y: 272,
       size: 8,
       maxWidth: 70
     },
 
-    // รายการทรัพย์สิน แถวที่ 4
+// รายการทรัพย์สิน แถวที่ 4
     itemQty4: {
       page: 0,
-      x: 70,
-      y: 230,
+      x: 96,
+      y: 256,
       size: 8,
       maxWidth: 40
     },
 
     itemCondition4: {
       page: 0,
-      x: 115,
-      y: 230,
+      x: 138,
+      y: 256,
       size: 8,
       maxWidth: 45
     },
 
     itemBrand4: {
       page: 0,
-      x: 165,
-      y: 230,
+      x: 200,
+      y: 256,
       size: 8,
       maxWidth: 80
     },
 
     itemDetail4: {
       page: 0,
-      x: 250,
-      y: 230,
+      x: 280,
+      y: 256,
       size: 8,
       maxWidth: 180
     },
@@ -287,11 +297,11 @@ const MAPPING2 = {
     itemPrice4: {
       page: 0,
       x: 470,
-      y: 230,
+      y: 256,
       size: 8,
       maxWidth: 70
-    }
-  },
+    },
+
 
   // พิกัดเดิมทะเบียนนิติบุคคล (ห้ามแก้)
   registration: {
