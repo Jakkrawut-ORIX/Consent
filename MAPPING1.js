@@ -7,89 +7,23 @@ const MAPPING1 = {
   file: './template-disclosure.pdf',
 
   fields: {
-    consentPlace: {
-      page: 0,
-      x: 386,
-      y: 722,
-      size: 10,
-      maxWidth: 165
-    },
-
-    companyName: {
-      page: 0,
-      x: 164,
-      y: 514,
-      size: 10,
-      maxWidth: 185
-    },
-
-    companyType: {
-      page: 0,
-      x: 442,
-      y: 514,
-      size: 10,
-      maxWidth: 130
-    },
-
-    registrationDate: {
-      page: 0,
-      x: 138,
-      y: 470,
-      size: 10,
-      maxWidth: 110
-    },
-
-    phoneNo: {
-      page: 0,
-      x: 420,
-      y: 470,
-      size: 10,
-      maxWidth: 100
-    },
+    consentPlace: { page: 0, x: 386, y: 722, size: 10, maxWidth: 165 },
+    companyName: { page: 0, x: 164, y: 514, size: 10, maxWidth: 185 },
+    companyType: { page: 0, x: 442, y: 514, size: 10, maxWidth: 130 },
+    registrationDate: { page: 0, x: 138, y: 470, size: 10, maxWidth: 110 },
+    phoneNo: { page: 0, x: 420, y: 470, size: 10, maxWidth: 100 },
 
     authorizedName: [
-      {
-        page: 0,
-        x: 96,
-        y: 448,
-        size: 10,
-        maxWidth: 125
-      },
-      {
-        page: 0,
-        x: 308,
-        y: 230,
-        size: 6,
-        maxWidth: 125,
-        align: 'center'
-      }
+      { page: 0, x: 96, y: 448, size: 10, maxWidth: 125 },
+      { page: 0, x: 308, y: 230, size: 6, maxWidth: 125, align: 'center' }
     ],
 
     authorizedName2: [
-      {
-        page: 0,
-        x: 340,
-        y: 448,
-        size: 10,
-        maxWidth: 130
-      },
-      {
-        page: 0,
-        x: 398,
-        y: 230,
-        size: 6,
-        maxWidth: 130,
-        align: 'center'
-      }
+      { page: 0, x: 340, y: 448, size: 10, maxWidth: 130 },
+      { page: 0, x: 398, y: 230, size: 6, maxWidth: 130, align: 'center' }
     ],
 
-    registrarOffice: {
-      page: 0,
-      x: 410,
-      y: 430,
-      size: 10,
-      maxWidth: 140
-    }
+    registrarOffice: { page: 0, x: 410, y: 430, size: 10, maxWidth: 140 }
   },
 
   registration: {
@@ -97,20 +31,6 @@ const MAPPING1 = {
     page: 0,
     y: 490,
     size: 10,
-    centers: [
-      248,
-      276,
-      298,
-      320,
-      342,
-      372,
-      394,
-      416,
-      438,
-      462,
-      490,
-      512,
-      538
-    ]
+    centers: [248, 276, 298, 320, 342, 372, 394, 416, 438, 462, 490, 512, 538]
   }
 };
