@@ -47,21 +47,41 @@ const MAPPING1 = {
       maxWidth: 100
     },
 
-    authorizedName: {
-      page: 0,
-      x: 96,
-      y: 448,
-      size: 10,
-      maxWidth: 125
-    },
+    authorizedName: [
+      {
+        page: 0,
+        x: 96,
+        y: 448,
+        size: 10,
+        maxWidth: 125
+      },
+      {
+        page: 0,
+        x: 308,
+        y: 230,
+        size: 6,
+        maxWidth: 125,
+        align: 'center'
+      }
+    ],
 
-    authorizedName2: {
-      page: 0,
-      x: 340,
-      y: 448,
-      size: 10,
-      maxWidth: 130
-    },
+    authorizedName2: [
+      {
+        page: 0,
+        x: 340,
+        y: 448,
+        size: 10,
+        maxWidth: 130
+      },
+      {
+        page: 0,
+        x: 398,
+        y: 230,
+        size: 6,
+        maxWidth: 130,
+        align: 'center'
+      }
+    ],
 
     registrarOffice: {
       page: 0,
@@ -93,10 +113,4 @@ const MAPPING1 = {
       538
     ]
   }
-    
-  // Signer (เพิ่ม property align หรือคำนวณ x ใหม่ตามกล่องข้อความ)
-    authorizedName: { page: 0, x: 308, y: 230, size: 6, maxWidth: 125, align: 'center' },
-    authorizedName2: { page: 0, x: 398, y: 230, size: 6, maxWidth: 130, align: 'center' },
-}
 };
-
