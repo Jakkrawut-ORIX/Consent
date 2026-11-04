@@ -302,22 +302,9 @@ const MAPPING2 = {
       maxWidth: 70
     },
 
-// Signer 
-        authorizedName: {
-      page: 0,
-      x: 256,
-      y: 70,
-      size: 8,
-      maxWidth: 125
-    },
-
-    authorizedName2: {
-      page: 0,
-      x: 386,
-      y: 70,
-      size: 8,
-      maxWidth: 130
-    },
+    // Signer (เพิ่ม property align หรือคำนวณ x ใหม่ตามกล่องข้อความ)
+    authorizedName: { page: 0, x: 256, y: 70, size: 8, maxWidth: 125, align: 'center' },
+    authorizedName2: { page: 0, x: 386, y: 70, size: 8, maxWidth: 130, align: 'center' },
     
   // พิกัดเดิมทะเบียนนิติบุคคล (ห้ามแก้)
   registration: {
