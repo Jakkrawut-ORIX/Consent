@@ -302,7 +302,23 @@ const MAPPING2 = {
       maxWidth: 70
     },
 
+// Signer 
+        authorizedName: {
+      page: 0,
+      x: 256,
+      y: 70,
+      size: 8,
+      maxWidth: 125
+    },
 
+    authorizedName2: {
+      page: 0,
+      x: 386,
+      y: 70,
+      size: 8,
+      maxWidth: 130
+    },
+    
   // พิกัดเดิมทะเบียนนิติบุคคล (ห้ามแก้)
   registration: {
     mode: 'continuous',
