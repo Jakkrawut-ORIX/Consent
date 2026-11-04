@@ -97,5 +97,6 @@ const MAPPING1 = {
   // Signer (เพิ่ม property align หรือคำนวณ x ใหม่ตามกล่องข้อความ)
     authorizedName: { page: 0, x: 308, y: 230, size: 6, maxWidth: 125, align: 'center' },
     authorizedName2: { page: 0, x: 398, y: 230, size: 6, maxWidth: 130, align: 'center' },
+}
 };
 
