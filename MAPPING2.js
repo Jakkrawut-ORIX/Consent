@@ -44,21 +44,42 @@ const MAPPING2 = {
       maxWidth: 190
     },
 
-    authorizedName: {
-      page: 0,
-      x: 194,
-      y: 512,
-      size: 8,
-      maxWidth: 125
-    },
+    // เขียนชื่อผู้มีอำนาจทั้งส่วนข้อมูลและช่องลงนาม
+    authorizedName: [
+      {
+        page: 0,
+        x: 194,
+        y: 512,
+        size: 8,
+        maxWidth: 125
+      },
+      {
+        page: 0,
+        x: 256,
+        y: 70,
+        size: 8,
+        maxWidth: 125,
+        align: 'center'
+      }
+    ],
 
-    authorizedName2: {
-      page: 0,
-      x: 418,
-      y: 512,
-      size: 8,
-      maxWidth: 130
-    },
+    authorizedName2: [
+      {
+        page: 0,
+        x: 418,
+        y: 512,
+        size: 8,
+        maxWidth: 130
+      },
+      {
+        page: 0,
+        x: 386,
+        y: 70,
+        size: 8,
+        maxWidth: 130,
+        align: 'center'
+      }
+    ],
 
     // ========================================
     // ฟิลด์ใหม่: พิกัดชั่วคราวตามแบบฟอร์ม
@@ -172,15 +193,6 @@ const MAPPING2 = {
     // รายการทรัพย์สิน แถวที่ 2
     itemQty2: {
       page: 0,
-      x: 70,
-      y: 266,
-      size: 8,
-      maxWidth: 40
-    },
-
-// รายการทรัพย์สิน แถวที่ 2
-    itemQty2: {
-      page: 0,
       x: 96,
       y: 288,
       size: 8,
@@ -218,7 +230,6 @@ const MAPPING2 = {
       size: 8,
       maxWidth: 70
     },
-
 
     // รายการทรัพย์สิน แถวที่ 3
     itemQty3: {
@@ -261,7 +272,7 @@ const MAPPING2 = {
       maxWidth: 70
     },
 
-// รายการทรัพย์สิน แถวที่ 4
+    // รายการทรัพย์สิน แถวที่ 4
     itemQty4: {
       page: 0,
       x: 96,
@@ -300,12 +311,9 @@ const MAPPING2 = {
       y: 256,
       size: 8,
       maxWidth: 70
-    },
+    }
+  },
 
-    // Signer (เพิ่ม property align หรือคำนวณ x ใหม่ตามกล่องข้อความ)
-    authorizedName: { page: 0, x: 256, y: 70, size: 8, maxWidth: 125, align: 'center' },
-    authorizedName2: { page: 0, x: 386, y: 70, size: 8, maxWidth: 130, align: 'center' },
-    
   // พิกัดเดิมทะเบียนนิติบุคคล (ห้ามแก้)
   registration: {
     mode: 'continuous',
