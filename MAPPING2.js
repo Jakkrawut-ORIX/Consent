@@ -15,12 +15,12 @@ const MAPPING2 = {
 
     authorizedName: [
       { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
-      { page: 0, x: 256, y: 70, size: 8, maxWidth: 125, align: 'center' }
+      { page: 0, x: 2546, y: 70, size: 8, maxWidth: 125, align: 'center' }
     ],
 
     authorizedName2: [
       { page: 0, x: 418, y: 512, size: 8, maxWidth: 130 },
-      { page: 0, x: 386, y: 70, size: 8, maxWidth: 130, align: 'center' }
+      { page: 0, x: 356, y: 70, size: 8, maxWidth: 130, align: 'center' }
     ],
 
     faxNo: { page: 0, x: 405, y: 466, size: 8, maxWidth: 120 },
