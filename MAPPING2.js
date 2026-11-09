@@ -15,7 +15,7 @@ const MAPPING2 = {
 
     authorizedName: [
       { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
-      { page: 0, x: 2546, y: 70, size: 8, maxWidth: 125, align: 'center' }
+      { page: 0, x: 246, y: 70, size: 8, maxWidth: 125, align: 'center' }
     ],
 
     authorizedName2: [
