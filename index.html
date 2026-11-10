@@ -368,6 +368,86 @@ async function createPdf(data, type) {
     );
   }
 
+    //
+  // เลขทะเบียนนิติบุคคล
+  //
+  const q =
+    cfg.registration;
+
+  const page =
+    pages[q.page];
+
+  const no =
+    String(
+      data.companyRegNo || ''
+    );
+
+  if (!page) {
+    throw new Error(
+      'ไม่พบหน้าสำหรับเลขทะเบียนใน PDF'
+    );
+  }
+
+  if (
+    q.mode ===
+    'continuous'
+  ) {
+
+    drawField(
+      page,
+      q,
+      no,
+      fonts,
+      rgb
+    );
+
+  } else {
+
+    [...no].forEach(
+      (
+        number,
+        index
+      ) => {
+
+        const center =
+          q.centers?.[index];
+
+        if (
+          center ===
+          undefined
+        ) {
+          return;
+        }
+
+        page.drawText(
+          number,
+          {
+            x:
+              center -
+              fonts.latin.widthOfTextAtSize(
+                number,
+                q.size
+              ) / 2,
+
+            y: q.y,
+
+            size: q.size,
+
+            font:
+              fonts.latin,
+
+            color:
+              rgb(
+                0,
+                0,
+                0
+              )
+          }
+        );
+      }
+    );
+  }
+
   const prefix =
     type ===
     'application'
