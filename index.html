@@ -8,7 +8,54 @@
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
 <style>
-:root{--p:#0b67a3;--pd:#084d7a;--t:#17324a;--m:#637b8d;--b:#cedbe5;--e:#bd2c2c;--s:#087846;--bg:#eef4f8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Tahoma,Arial,sans-serif}header{padding:30px 20px 55px;background:var(--p);color:#fff}header>div,main{max-width:1040px;margin:auto}h1{margin:0;font-size:clamp(24px,4vw,34px)}main{margin-top:-30px;padding:0 18px 50px}.card{padding:28px;border-radius:16px;background:#fff;box-shadow:0 18px 50px #1237521a}h2{margin:0 0 16px;color:var(--pd);font-size:20px}.section-title{margin-top:28px;padding-top:24px;border-top:1px solid #e5edf3}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.full{grid-column:1/-1}label{display:block;margin-bottom:7px;color:#29465d;font-size:13px;font-weight:700}label small{color:var(--m);font-weight:400}input,select,textarea{width:100%;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--t);font:15px inherit}input,select{min-height:45px;padding:10px 12px}textarea{min-height:92px;padding:11px 12px;resize:vertical}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--p);box-shadow:0 0 0 4px #0b67a31f}.invalid{border-color:var(--e)!important}.registration-field{padding:16px;border:1px solid #cfe4f2;border-radius:13px;background:#f7fbfe}.registration-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:9px}.count,.helper{color:var(--m);font-size:12px}.count.complete{color:var(--s);font-weight:700}.dbd-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.lookup-button{padding:7px 11px;border:1px solid var(--p);border-radius:8px;background:#fff;color:var(--p);font-weight:700;cursor:pointer}.error-message{display:block;min-height:18px;margin-top:5px;color:var(--e);font-size:12px}.authorized-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.section-box{margin-top:24px;padding:16px;border:1px solid #dbe7ef;border-radius:12px;background:#fafcff}.section-box h3{margin:0 0 14px;color:var(--pd);font-size:16px}.asset-scroll{overflow-x:auto}.asset-table{width:100%;min-width:900px;border-collapse:collapse}.asset-table th,.asset-table td{padding:8px;border:1px solid #d8e4ee;vertical-align:top}.asset-table th{background:#f2f8fc;font-size:13px}.quantity-column{width:80px}.condition-column{width:120px}.brand-column{width:160px}.detail-column{min-width:260px}.price-column{width:190px}.price-input{text-align:right;font-variant-numeric:tabular-nums}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:26px;padding-top:20px;border-top:1px solid #e5edf3}.actions button{padding:11px 18px;border-radius:10px;font-weight:700;cursor:pointer}.secondary-button{border:1px solid var(--b);background:#fff;color:var(--t)}.primary-button{min-width:235px;border:0;background:var(--p);color:#fff}button:disabled{opacity:.55;cursor:wait}#status{min-height:24px;margin-top:12px;text-align:right;font-size:13px}#status.loading{color:var(--p)}#status.success{color:var(--s)}#status.error{padding:10px 12px;border-radius:8px;background:#fff4f4;color:var(--e);text-align:left}@media(max-width:720px){header{padding:25px 16px 50px}main{margin-top:-26px;padding:0 12px 40px}.card{padding:18px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.authorized-row{grid-template-columns:1fr}.registration-toolbar{align-items:flex-start;flex-direction:column}.actions{position:sticky;bottom:0;z-index:10;flex-direction:column-reverse;margin:20px -18px 0;padding:12px 18px;background:#fff;box-shadow:0 -8px 20px #12375214}.actions button{width:100%}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+:root{--primary:#176b87;--primary-dark:#0f5068;--text:#183243;--muted:#647784;--border:#d6e0e6;--error:#b42318;--success:#157347;--bg:#f3f6f8;--surface:#fff;--soft:#f8fafb;--radius:8px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Tahoma,Arial,sans-serif}
+header{padding:24px 20px 44px;background:var(--primary-dark);color:#fff}
+header>div,main{max-width:980px;margin:auto}
+h1{margin:0;font-size:clamp(22px,4vw,30px);line-height:1.3}
+main{margin-top:-24px;padding:0 16px 40px}
+.card{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 24px #17384a12}
+h2{margin:0 0 16px;color:var(--primary-dark);font-size:19px}
+.section-title{margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.full{grid-column:1/-1}
+label{display:block;margin-bottom:6px;color:#294859;font-size:13px;font-weight:700}
+label small,.helper,.count{color:var(--muted);font-weight:400}
+input,select,textarea{width:100%;border:1px solid var(--border);border-radius:var(--radius);background:#fff;color:var(--text);font:inherit}
+input,select{min-height:42px;padding:9px 11px}
+textarea{min-height:82px;padding:10px 11px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:3px solid #176b8726;border-color:var(--primary)}
+.invalid{border-color:var(--error)!important}
+.registration-field,.section-box{padding:16px;border:1px solid var(--border);border-radius:10px;background:var(--soft)}
+.section-box{margin-top:20px}
+.section-box h3{margin:0 0 12px;color:var(--primary-dark);font-size:16px}
+.registration-toolbar,.dbd-buttons,.actions{display:flex;align-items:center;gap:10px}
+.registration-toolbar{justify-content:space-between;margin-top:8px}
+.dbd-buttons{flex-wrap:wrap}
+.count,.helper{font-size:12px}
+.count.complete{color:var(--success);font-weight:700}
+.lookup-button{padding:7px 10px;border:1px solid var(--primary);border-radius:7px;background:#fff;color:var(--primary);font-weight:700;cursor:pointer}
+.lookup-button:hover{background:#edf6f8}
+.error-message{display:block;min-height:17px;margin-top:4px;color:var(--error);font-size:12px}
+.authorized-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.asset-scroll{overflow-x:auto}
+.asset-table{width:100%;min-width:820px;border-collapse:collapse}
+.asset-table th,.asset-table td{padding:7px;border:1px solid var(--border);vertical-align:top}
+.asset-table th{background:#edf3f6;font-size:12px;text-align:left}
+.quantity-column{width:72px}.condition-column{width:110px}.brand-column{width:150px}.detail-column{min-width:240px}.price-column{width:170px}
+.price-input{text-align:right;font-variant-numeric:tabular-nums}
+.actions{justify-content:flex-end;margin-top:24px;padding-top:18px;border-top:1px solid var(--border)}
+.actions button{min-height:42px;padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+.secondary-button{border:1px solid var(--border);background:#fff;color:var(--text)}
+.primary-button{min-width:220px;border:0;background:var(--primary);color:#fff}
+.primary-button:hover{background:var(--primary-dark)}
+button:focus-visible{outline:3px solid #176b8740;outline-offset:2px}
+button:disabled{opacity:.55;cursor:wait}
+#status{min-height:22px;margin-top:10px;text-align:right;font-size:13px}
+#status.loading{color:var(--primary)}#status.success{color:var(--success)}#status.error{padding:9px 11px;border-radius:7px;background:#fff1f0;color:var(--error);text-align:left}
+@media(max-width:720px){header{padding:20px 16px 38px}main{margin-top:-20px;padding:0 10px 32px}.card{padding:16px}.grid,.authorized-row{grid-template-columns:1fr;gap:13px}.full{grid-column:auto}.registration-toolbar{align-items:flex-start;flex-direction:column}.actions{position:sticky;bottom:0;z-index:10;flex-direction:column-reverse;margin:18px -16px -16px;padding:12px 16px;background:#fff;box-shadow:0 -6px 18px #17384a14}.actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -62,409 +109,91 @@ function wrapText(text,max,size,fonts){const lines=[];for(const paragraph of tex
 function drawField(page,position,value,fonts,rgb){const min=position.minSize||6;if(position.lines>1){let size=position.size||8,lines;for(;;){lines=wrapText(value,position.maxWidth,size,fonts);if(lines.length<=position.lines||size<=min)break;size-=.5}if(lines.length>position.lines)lines=[...lines.slice(0,position.lines-1),lines.slice(position.lines-1).join(' ')];const lineHeight=position.lineHeight||size*1.2;lines.forEach((line,index)=>drawRuns(page,line,position.x,position.y-index*lineHeight,fitTextSize(line,size,min,position.maxWidth,fonts),fonts,rgb));return}const size=fitTextSize(value,position.size||8,min,position.maxWidth,fonts),width=measureText(value,size,fonts),x=position.align==='center'&&position.maxWidth?position.x+(position.maxWidth-width)/2:position.x;drawRuns(page,value,x,position.y,size,fonts,rgb)}
 let fontBytesCache;
 async function loadFontBytes(){if(!fontBytesCache)fontBytesCache=Promise.all([loadBytes(THAI_FONT_URL),loadBytes(LATIN_FONT_URL).catch(()=>null)]);return fontBytesCache}
-async function createPdf(data, type) {
+async function createPdf(data,type){
+  if(typeof PDFLib==='undefined')throw new Error('โหลด pdf-lib ไม่สำเร็จ');
+  if(typeof fontkit==='undefined')throw new Error('โหลด fontkit ไม่สำเร็จ');
 
-  if (typeof PDFLib === 'undefined') {
-    throw new Error(
-      'โหลด pdf-lib ไม่สำเร็จ'
-    );
+  const cfg=getMapping(type);
+  if(!cfg?.file||!cfg?.fields||!cfg?.registration){
+    throw new Error(`โครงสร้าง Mapping ของ ${type} ไม่ครบ`);
   }
 
-  if (typeof fontkit === 'undefined') {
-    throw new Error(
-      'โหลด fontkit ไม่สำเร็จ'
-    );
-  }
-
-  const cfg = getMapping(type);
-
-  if (
-    !cfg?.file ||
-    !cfg?.fields ||
-    !cfg?.registration
-  ) {
-    throw new Error(
-      `โครงสร้าง Mapping ของ ${type} ไม่ครบ`
-    );
-  }
-
-  const {
-    PDFDocument,
-    StandardFonts,
-    rgb
-  } = PDFLib;
-
-  const doc =
-    await PDFDocument.load(
-      await loadBytes(cfg.file)
-    );
-
+  const {PDFDocument,StandardFonts,rgb}=PDFLib;
+  const doc=await PDFDocument.load(await loadBytes(cfg.file));
   doc.registerFontkit(fontkit);
 
-  const [
-    thaiBytes,
-    latinBytes
-  ] = await loadFontBytes();
-
-  const fonts = {
-    thai:
-      await doc.embedFont(
-        thaiBytes,
-        {
-          subset: true
-        }
-      ),
-
-    latin:
-      latinBytes
-        ? await doc.embedFont(
-            latinBytes,
-            {
-              subset: true
-            }
-          )
-        : await doc.embedFont(
-            StandardFonts.Helvetica
-          )
+  const [thaiBytes,latinBytes]=await loadFontBytes();
+  const fonts={
+    thai:await doc.embedFont(thaiBytes,{subset:true}),
+    latin:latinBytes
+      ?await doc.embedFont(latinBytes,{subset:true})
+      :await doc.embedFont(StandardFonts.Helvetica)
   };
 
-  const pages =
-    doc.getPages();
+  const pages=doc.getPages();
+  const firstName=String(data.authorizedName||'').trim();
+  const secondName=String(data.authorizedName2||'').trim();
+  const isApplication=type==='application';
 
-  const hasFirst =
-    String(
-      data.authorizedName || ''
-    ).trim();
-
-  const hasSecond =
-    String(
-      data.authorizedName2 || ''
-    ).trim();
-
-  for (
-    const [
-      fieldName,
-      mappingValue
-    ]
-    of Object.entries(
-      cfg.fields
-    )
-  ) {
-
-    //
-    // กรณีชื่อคนเดียว
-    //
-    if (
-      fieldName ===
-      'authorizedNameCenter'
-    ) {
-
-      if (
-        hasFirst &&
-        !hasSecond
-      ) {
-
-        const positions =
-          Array.isArray(
-            mappingValue
-          )
-            ? mappingValue
-            : [mappingValue];
-
-        for (
-          const position
-          of positions
-        ) {
-
-          const page =
-            pages[position.page];
-
-          if (!page) {
-            continue;
-          }
-
-          drawField(
-            page,
-            position,
-            hasFirst,
-            fonts,
-            rgb
-          );
+  for(const [fieldName,mappingValue] of Object.entries(cfg.fields)){
+    if(isApplication&&fieldName==='authorizedNameCenter'){
+      if(firstName&&!secondName){
+        const positions=Array.isArray(mappingValue)?mappingValue:[mappingValue];
+        for(const position of positions){
+          const targetPage=pages[position.page];
+          if(targetPage)drawField(targetPage,position,firstName,fonts,rgb);
         }
       }
-
       continue;
     }
 
-    //
-    // ซ่อนชื่อคนที่ 2
-    //
-    if (
-      fieldName ===
-        'authorizedName2' &&
-      !hasSecond
-    ) {
+    if(isApplication&&fieldName==='authorizedName'&&firstName&&!secondName){
+      const positions=Array.isArray(mappingValue)?[mappingValue[0]]:[mappingValue];
+      for(const position of positions){
+        const targetPage=pages[position.page];
+        if(targetPage)drawField(targetPage,position,firstName,fonts,rgb);
+      }
       continue;
     }
 
-    //
-    // มีคนเดียว
-    // ใช้เฉพาะตำแหน่งบนสุด
-    // ไม่ใช้ตำแหน่งลายเซ็นซ้าย
-    //
-    if (
-      fieldName ===
-        'authorizedName' &&
-      hasFirst &&
-      !hasSecond
-    ) {
+    if(isApplication&&fieldName==='authorizedName2'&&!secondName)continue;
 
-      const positions =
-        Array.isArray(
-          mappingValue
-        )
-          ? [mappingValue[0]]
-          : [mappingValue];
+    const value=String(data[fieldName]||'').trim();
+    if(!value)continue;
 
-      for (
-        const position
-        of positions
-      ) {
-
-        const page =
-          pages[position.page];
-
-        if (!page) {
-          continue;
-        }
-
-        drawField(
-          page,
-          position,
-          hasFirst,
-          fonts,
-          rgb
-        );
-      }
-
-      continue;
-    }
-
-    const value =
-      String(
-        data[fieldName] || ''
-      ).trim();
-
-    if (!value) {
-      continue;
-    }
-
-    const positions =
-      Array.isArray(
-        mappingValue
-      )
-        ? mappingValue
-        : [mappingValue];
-
-    for (
-      const position
-      of positions
-    ) {
-
-      const page =
-        pages[position.page];
-
-      if (!page) {
-        continue;
-      }
-
-      drawField(
-        page,
-        position,
-        value,
-        fonts,
-        rgb
-      );
+    const positions=Array.isArray(mappingValue)?mappingValue:[mappingValue];
+    for(const position of positions){
+      const targetPage=pages[position.page];
+      if(targetPage)drawField(targetPage,position,value,fonts,rgb);
     }
   }
 
-  //
-  // เลขทะเบียนนิติบุคคล
-  //
-  const q =
-    cfg.registration;
+  const registration=cfg.registration;
+  const registrationPage=pages[registration.page];
+  const registrationNumber=String(data.companyRegNo||'');
 
-  const page =
-    pages[q.page];
+  if(!registrationPage)throw new Error('ไม่พบหน้าสำหรับเลขทะเบียนใน PDF');
 
-  const no =
-    String(
-      data.companyRegNo || ''
-    );
-
-  if (!page) {
-    throw new Error(
-      'ไม่พบหน้าสำหรับเลขทะเบียนใน PDF'
-    );
+  if(registration.mode==='continuous'){
+    drawField(registrationPage,registration,registrationNumber,fonts,rgb);
+  }else{
+    [...registrationNumber].forEach((number,index)=>{
+      const center=registration.centers?.[index];
+      if(center===undefined)return;
+      registrationPage.drawText(number,{
+        x:center-fonts.latin.widthOfTextAtSize(number,registration.size)/2,
+        y:registration.y,
+        size:registration.size,
+        font:fonts.latin,
+        color:rgb(0,0,0)
+      });
+    });
   }
 
-  if (
-    q.mode ===
-    'continuous'
-  ) {
-
-    drawField(
-      page,
-      q,
-      no,
-      fonts,
-      rgb
-    );
-
-  } else {
-
-    [...no].forEach(
-      (
-        number,
-        index
-      ) => {
-
-        const center =
-          q.centers?.[index];
-
-        if (
-          center ===
-          undefined
-        ) {
-          return;
-        }
-
-        page.drawText(
-          number,
-          {
-            x:
-              center -
-              fonts.latin.widthOfTextAtSize(
-                number,
-                q.size
-              ) / 2,
-
-            y: q.y,
-
-            size: q.size,
-
-            font:
-              fonts.latin,
-
-            color:
-              rgb(
-                0,
-                0,
-                0
-              )
-          }
-        );
-      }
-    );
-  }
-
-    //
-  // เลขทะเบียนนิติบุคคล
-  //
-  const q =
-    cfg.registration;
-
-  const page =
-    pages[q.page];
-
-  const no =
-    String(
-      data.companyRegNo || ''
-    );
-
-  if (!page) {
-    throw new Error(
-      'ไม่พบหน้าสำหรับเลขทะเบียนใน PDF'
-    );
-  }
-
-  if (
-    q.mode ===
-    'continuous'
-  ) {
-
-    drawField(
-      page,
-      q,
-      no,
-      fonts,
-      rgb
-    );
-
-  } else {
-
-    [...no].forEach(
-      (
-        number,
-        index
-      ) => {
-
-        const center =
-          q.centers?.[index];
-
-        if (
-          center ===
-          undefined
-        ) {
-          return;
-        }
-
-        page.drawText(
-          number,
-          {
-            x:
-              center -
-              fonts.latin.widthOfTextAtSize(
-                number,
-                q.size
-              ) / 2,
-
-            y: q.y,
-
-            size: q.size,
-
-            font:
-              fonts.latin,
-
-            color:
-              rgb(
-                0,
-                0,
-                0
-              )
-          }
-        );
-      }
-    );
-  }
-
-  const prefix =
-    type ===
-    'application'
-      ? 'ใบคำขอสินเชื่อ'
-      : 'หนังสือให้ความยินยอม';
-
-  return {
-    bytes:
-      await doc.save({
-        useObjectStreams:
-          false
-      }),
-
-    name:
-      `${prefix} - ${safeFileName(
-        data.companyName
-      )}.pdf`
+  const prefix=isApplication?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';
+  return{
+    bytes:await doc.save({useObjectStreams:false}),
+    name:`${prefix} - ${safeFileName(data.companyName)}.pdf`
   };
 }
 function formatPrice(value){const cleaned=String(value).replace(/,/g,'').replace(/[^\d.]/g,'');if(!cleaned)return'';const dot=cleaned.indexOf('.'),whole=(dot>=0?cleaned.slice(0,dot):cleaned).replace(/^0+(?=\d)/,'')||'0',decimal=dot>=0?cleaned.slice(dot+1).replace(/\./g,'').slice(0,2):'',grouped=whole.replace(/\B(?=(\d{3})+(?!\d))/g,',');return dot>=0?`${grouped}.${decimal}`:grouped}
