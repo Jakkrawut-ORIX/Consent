@@ -387,7 +387,6 @@ async function createPdf(data, type) {
       )}.pdf`
   };
 }
-const q=cfg.registration,page=pages[q.page],no=String(data.companyRegNo||'');if(!page)throw Error('ไม่พบหน้าสำหรับเลขทะเบียนใน PDF');if(q.mode==='continuous')drawField(page,q,no,fonts,rgb);else[...no].forEach((number,index)=>{const center=q.centers?.[index];if(center!==undefined)page.drawText(number,{x:center-fonts.latin.widthOfTextAtSize(number,q.size)/2,y:q.y,size:q.size,font:fonts.latin,color:rgb(0,0,0)})});const prefix=type==='application'?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';return{bytes:await doc.save({useObjectStreams:false}),name:`${prefix} - ${safeFileName(data.companyName)}.pdf`}}
 function formatPrice(value){const cleaned=String(value).replace(/,/g,'').replace(/[^\d.]/g,'');if(!cleaned)return'';const dot=cleaned.indexOf('.'),whole=(dot>=0?cleaned.slice(0,dot):cleaned).replace(/^0+(?=\d)/,'')||'0',decimal=dot>=0?cleaned.slice(dot+1).replace(/\./g,'').slice(0,2):'',grouped=whole.replace(/\B(?=(\d{3})+(?!\d))/g,',');return dot>=0?`${grouped}.${decimal}`:grouped}
 function formatPriceInput(input){const original=input.value,cursor=input.selectionStart??original.length,before=original.slice(0,cursor).replace(/,/g,'').length,formatted=formatPrice(original);input.value=formatted;let next=0,count=0;while(next<formatted.length&&count<before){if(formatted[next]!==',')count++;next++}try{input.setSelectionRange(next,next)}catch{}}
 form.addEventListener('input',event=>{if(event.target.classList.contains('price-input'))formatPriceInput(event.target)});
