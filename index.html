@@ -62,7 +62,137 @@ function wrapText(text,max,size,fonts){const lines=[];for(const paragraph of tex
 function drawField(page,position,value,fonts,rgb){const min=position.minSize||6;if(position.lines>1){let size=position.size||8,lines;for(;;){lines=wrapText(value,position.maxWidth,size,fonts);if(lines.length<=position.lines||size<=min)break;size-=.5}if(lines.length>position.lines)lines=[...lines.slice(0,position.lines-1),lines.slice(position.lines-1).join(' ')];const lineHeight=position.lineHeight||size*1.2;lines.forEach((line,index)=>drawRuns(page,line,position.x,position.y-index*lineHeight,fitTextSize(line,size,min,position.maxWidth,fonts),fonts,rgb));return}const size=fitTextSize(value,position.size||8,min,position.maxWidth,fonts),width=measureText(value,size,fonts),x=position.align==='center'&&position.maxWidth?position.x+(position.maxWidth-width)/2:position.x;drawRuns(page,value,x,position.y,size,fonts,rgb)}
 let fontBytesCache;
 async function loadFontBytes(){if(!fontBytesCache)fontBytesCache=Promise.all([loadBytes(THAI_FONT_URL),loadBytes(LATIN_FONT_URL).catch(()=>null)]);return fontBytesCache}
-async function createPdf(data,type){if(typeof PDFLib==='undefined')throw Error('โหลด pdf-lib ไม่สำเร็จ');if(typeof fontkit==='undefined')throw Error('โหลด fontkit ไม่สำเร็จ');const cfg=getMapping(type);if(!cfg?.file||!cfg?.fields||!cfg?.registration)throw Error(`โครงสร้าง Mapping ของ ${type} ไม่ครบ`);const {PDFDocument,StandardFonts,rgb}=PDFLib,doc=await PDFDocument.load(await loadBytes(cfg.file));doc.registerFontkit(fontkit);const [thaiBytes,latinBytes]=await loadFontBytes(),fonts={thai:await doc.embedFont(thaiBytes,{subset:true}),latin:latinBytes?await doc.embedFont(latinBytes,{subset:true}):await doc.embedFont(StandardFonts.Helvetica)},pages=doc.getPages();for(const[fieldName,map]of Object.entries(cfg.fields)){const value=String(data[fieldName]||'').trim();if(!value)continue;for(const position of(Array.isArray(map)?map:[map])){const page=pages[position.page];if(page)drawField(page,position,value,fonts,rgb)}}const q=cfg.registration,page=pages[q.page],no=String(data.companyRegNo||'');if(!page)throw Error('ไม่พบหน้าสำหรับเลขทะเบียนใน PDF');if(q.mode==='continuous')drawField(page,q,no,fonts,rgb);else[...no].forEach((number,index)=>{const center=q.centers?.[index];if(center!==undefined)page.drawText(number,{x:center-fonts.latin.widthOfTextAtSize(number,q.size)/2,y:q.y,size:q.size,font:fonts.latin,color:rgb(0,0,0)})});const prefix=type==='application'?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';return{bytes:await doc.save({useObjectStreams:false}),name:`${prefix} - ${safeFileName(data.companyName)}.pdf`}}
+async function createPdf(data,type){if(typeof PDFLib==='undefined')throw Error('โหลด pdf-lib ไม่สำเร็จ');if(typeof fontkit==='undefined')throw Error('โหลด fontkit ไม่สำเร็จ');const cfg=getMapping(type);if(!cfg?.file||!cfg?.fields||!cfg?.registration)throw Error(`โครงสร้าง Mapping ของ ${type} ไม่ครบ`);const {PDFDocument,StandardFonts,rgb}=PDFLib,doc=await PDFDocument.load(await loadBytes(cfg.file));doc.registerFontkit(fontkit);const [thaiBytes,latinBytes]=await loadFontBytes(),fonts={thai:await doc.embedFont(thaiBytes,{subset:true}),latin:latinBytes?await doc.embedFont(latinBytes,{subset:true}):await doc.embedFont(StandardFonts.Helvetica)},pages=doc.getPages();for (
+  const [
+    fieldName,
+    mappingValue
+  ]
+  of Object.entries(
+    cfg.fields
+  )
+) {
+
+  if (
+    fieldName ===
+    'authorizedNameCenter'
+  ) {
+
+    if (
+      hasFirst &&
+      !hasSecond
+    ) {
+
+      const positions =
+        Array.isArray(mappingValue)
+          ? mappingValue
+          : [mappingValue];
+
+      for (
+        const position
+        of positions
+      ) {
+
+        const page =
+          pages[position.page];
+
+        if (!page) {
+          continue;
+        }
+
+        drawField(
+          page,
+          position,
+          hasFirst,
+          fonts,
+          rgb
+        );
+      }
+    }
+
+    continue;
+  }
+
+  if (
+    fieldName ===
+      'authorizedName2' &&
+    !hasSecond
+  ) {
+    continue;
+  }
+
+  if (
+    fieldName ===
+      'authorizedName' &&
+    hasFirst &&
+    !hasSecond
+  ) {
+
+    const positions =
+      Array.isArray(
+        mappingValue
+      )
+        ? [mappingValue[0]]
+        : [mappingValue];
+
+    for (
+      const position
+      of positions
+    ) {
+
+      const page =
+        pages[position.page];
+
+      if (!page) {
+        continue;
+      }
+
+      drawField(
+        page,
+        position,
+        hasFirst,
+        fonts,
+        rgb
+      );
+    }
+
+    continue;
+  }
+
+  const value =
+    String(
+      data[fieldName] || ''
+    ).trim();
+
+  if (!value) {
+    continue;
+  }
+
+  const positions =
+    Array.isArray(mappingValue)
+      ? mappingValue
+      : [mappingValue];
+
+  for (
+    const position
+    of positions
+  ) {
+
+    const page =
+      pages[position.page];
+
+    if (!page) {
+      continue;
+    }
+
+    drawField(
+      page,
+      position,
+      value,
+      fonts,
+      rgb
+    );
+  }
+}const q=cfg.registration,page=pages[q.page],no=String(data.companyRegNo||'');if(!page)throw Error('ไม่พบหน้าสำหรับเลขทะเบียนใน PDF');if(q.mode==='continuous')drawField(page,q,no,fonts,rgb);else[...no].forEach((number,index)=>{const center=q.centers?.[index];if(center!==undefined)page.drawText(number,{x:center-fonts.latin.widthOfTextAtSize(number,q.size)/2,y:q.y,size:q.size,font:fonts.latin,color:rgb(0,0,0)})});const prefix=type==='application'?'ใบคำขอสินเชื่อ':'หนังสือให้ความยินยอม';return{bytes:await doc.save({useObjectStreams:false}),name:`${prefix} - ${safeFileName(data.companyName)}.pdf`}}
 function formatPrice(value){const cleaned=String(value).replace(/,/g,'').replace(/[^\d.]/g,'');if(!cleaned)return'';const dot=cleaned.indexOf('.'),whole=(dot>=0?cleaned.slice(0,dot):cleaned).replace(/^0+(?=\d)/,'')||'0',decimal=dot>=0?cleaned.slice(dot+1).replace(/\./g,'').slice(0,2):'',grouped=whole.replace(/\B(?=(\d{3})+(?!\d))/g,',');return dot>=0?`${grouped}.${decimal}`:grouped}
 function formatPriceInput(input){const original=input.value,cursor=input.selectionStart??original.length,before=original.slice(0,cursor).replace(/,/g,'').length,formatted=formatPrice(original);input.value=formatted;let next=0,count=0;while(next<formatted.length&&count<before){if(formatted[next]!==',')count++;next++}try{input.setSelectionRange(next,next)}catch{}}
 form.addEventListener('input',event=>{if(event.target.classList.contains('price-input'))formatPriceInput(event.target)});
