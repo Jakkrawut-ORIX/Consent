@@ -56,10 +56,22 @@ function splitRuns(text){const output=[];for(const character of text){const thai
 function measureText(text,size,fonts){return splitRuns(text).reduce((total,run)=>total+(run.thai?fonts.thai:fonts.latin).widthOfTextAtSize(run.text,size),0)}
 function drawRuns(page,text,x,y,size,fonts,rgb){for(const run of splitRuns(text)){const font=run.thai?fonts.thai:fonts.latin;page.drawText(run.text,{x,y,size,font,color:rgb(0,0,0)});x+=font.widthOfTextAtSize(run.text,size)}}
 function fitTextSize(text,size,min,max,fonts){if(!max)return size;const width=measureText(text,size,fonts);return width<=max?size:Math.max(min,size*max/width)}
-function wrapText(text,max,size,fonts){const lines=[];for(const paragraph of text.split(/\r?\n/)){let current='';for(const word of paragraph.split(/(?<=\s)/)){if(measureText(current+word,size,fonts)<=max){current+=word;continue}if(current.trim()){lines.push(current.trimEnd());current=''}let piece='';for(const character of word){if(piece&&measureText(piece+character,size,fonts)>max){lines.push(piece);piece=''}piece+=character}current=piece}if(current.trim()||!lines.length)lines.push(current.trimEnd())}return lines}
-function drawField(page,position,value,fonts,rgb){const min=position.minSize||6;if(position.lines>1){let size=position.size||8,lines;for(;;){lines=wrapText(value,position.maxWidth,size,fonts);if(lines.length<=position.lines||size<=min)break;size-=.5}if(lines.length>position.lines)lines=[...lines.slice(0,position.lines-1),lines.slice(position.lines-1).join(' ')];const lineHeight=position.lineHeight||size*1.2;lines.forEach((line,index)=>drawRuns(page,line,position.x,position.y-index*lineHeight,fitTextSize(line,size,min,position.maxWidth,fonts),fonts,rgb));return}const size=fitTextSize(value,position.size||8,min,position.maxWidth,fonts),width=measureText(value,size,fonts),x=position.align==='center'&&position.maxWidth?position.x+(position.maxWidth-width)/2:position.x;drawRuns(page,value,x,position.y,size,fonts,rgb)}
+function wrapText(text,max,size,fonts){const lines=[];for(const paragraph of text.split(/\r?\n/)){let current='';for(const word of paragraph.match(/\S+\s*|\s+/g)||[]){if(measureText(current+word,size,fonts)<=max){current+=word;continue}if(current.trim()){lines.push(current.trimEnd());current=''}let piece='';for(const character of word){if(piece&&measureText(piece+character,size,fonts)>max){lines.push(piece);piece=''}piece+=character}current=piece}if(current.trim()||!lines.length)lines.push(current.trimEnd())}return lines}
+function drawField(page,position,value,fonts,rgb){
+const min=position.minSize||6,maxLines=position.lines||(position.lineHeight?2:1);
+if(maxLines>1){let size=position.size||8,lines;for(;;){lines=wrapText(value,position.maxWidth,size,fonts);if(lines.length<=maxLines||size<=min)break;size-=.5}if(lines.length>maxLines)lines=[...lines.slice(0,maxLines-1),lines.slice(maxLines-1).join(' ')];const lineHeight=position.lineHeight||size*1.2;lines.forEach((line,index)=>drawRuns(page,line,position.x,position.y-index*lineHeight,fitTextSize(line,size,min,position.maxWidth,fonts),fonts,rgb));return}
+const size=fitTextSize(value,position.size||8,min,position.maxWidth,fonts),width=measureText(value,size,fonts),
+x=position.align==='center-point'?position.x-width/2
+ :position.align==='center'&&position.maxWidth?position.x+(position.maxWidth-width)/2
+ :position.x;
+drawRuns(page,value,x,position.y,size,fonts,rgb)}
 let fontBytesCache;
-async function loadFontBytes(){if(!fontBytesCache)fontBytesCache=Promise.all([loadBytes(THAI_FONT_URL),loadBytes(LATIN_FONT_URL).catch(()=>null)]);return fontBytesCache}
+function loadFontBytes(){
+if(!fontBytesCache){
+fontBytesCache=Promise.all([loadBytes(THAI_FONT_URL),loadBytes(LATIN_FONT_URL).catch(()=>null)]).catch(e=>{fontBytesCache=null;throw e});
+}
+return fontBytesCache;
+}
 function getAuthorizedState(data){
 const firstName=String(data.authorizedName||'').trim(),secondName=String(data.authorizedName2||'').trim(),names=[firstName,secondName].filter(Boolean);
 return{firstName,secondName,count:names.length,singleName:names.length===1?names[0]:'',hasTwoNames:names.length===2}
@@ -73,17 +85,17 @@ const{PDFDocument,StandardFonts,rgb}=PDFLib,doc=await PDFDocument.load(await loa
 doc.registerFontkit(fontkit);
 const[thaiBytes,latinBytes]=await loadFontBytes(),fonts={thai:await doc.embedFont(thaiBytes,{subset:true}),latin:latinBytes?await doc.embedFont(latinBytes,{subset:true}):await doc.embedFont(StandardFonts.Helvetica)},pages=doc.getPages(),authorized=getAuthorizedState(data),isApplication=type==='application';
 for(const[fieldName,mappingValue]of Object.entries(cfg.fields)){
-if(isApplication&&fieldName==='authorizedNameCenter'){
-if(authorized.singleName)for(const position of(Array.isArray(mappingValue)?mappingValue:[mappingValue])){const page=pages[position.page];if(page)drawField(page,position,authorized.singleName,fonts,rgb)}
-continue
-}
-if(isApplication&&authorized.count===1&&(fieldName==='authorizedName'||fieldName==='authorizedName2')){
-const value=fieldName==='authorizedName'?authorized.firstName:authorized.secondName;if(!value)continue;
-const position=Array.isArray(mappingValue)?mappingValue[0]:mappingValue,page=position&&pages[position.page];if(page)drawField(page,position,value,fonts,rgb);continue
-}
-if(isApplication&&authorized.count===0&&(fieldName==='authorizedName'||fieldName==='authorizedName2'))continue;
+if(isApplication&&(fieldName==='authorizedName'||fieldName==='authorizedName2')&&authorized.count<2)continue;
 const value=String(data[fieldName]||'').trim();if(!value)continue;
 for(const position of(Array.isArray(mappingValue)?mappingValue:[mappingValue])){const page=pages[position.page];if(page)drawField(page,position,value,fonts,rgb)}
+}
+if(isApplication&&authorized.count===1){
+const a=[].concat(cfg.fields.authorizedName||[]),b=[].concat(cfg.fields.authorizedName2||[]),top=a[0],botA=a[1],botB=b[1];
+if(top&&pages[top.page])drawField(pages[top.page],top,authorized.singleName,fonts,rgb);
+if(botA&&pages[botA.page]){
+const pos=botB?{...botA,x:(botA.x+botB.x)/2,maxWidth:Math.max(botA.maxWidth||0,botB.maxWidth||0)||undefined}:botA;
+drawField(pages[botA.page],pos,authorized.singleName,fonts,rgb);
+}
 }
 const registration=cfg.registration,page=pages[registration.page],number=String(data.companyRegNo||'');
 if(!page)throw Error('ไม่พบหน้าสำหรับเลขทะเบียนใน PDF');
