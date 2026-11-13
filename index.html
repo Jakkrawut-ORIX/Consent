@@ -90,9 +90,11 @@ const value=String(data[fieldName]||'').trim();if(!value)continue;
 for(const position of(Array.isArray(mappingValue)?mappingValue:[mappingValue])){const page=pages[position.page];if(page)drawField(page,position,value,fonts,rgb)}
 }
 if(isApplication&&authorized.count===1){
-const a=[].concat(cfg.fields.authorizedName||[]),b=[].concat(cfg.fields.authorizedName2||[]),top=a[0],botA=a[1],botB=b[1];
+const a=[].concat(cfg.fields.authorizedName||[]),b=[].concat(cfg.fields.authorizedName2||[]),top=a[0],botA=a[1],botB=b[1],centerList=[].concat(cfg.fields.authorizedNameCenter||[]);
 if(top&&pages[top.page])drawField(pages[top.page],top,authorized.singleName,fonts,rgb);
-if(botA&&pages[botA.page]){
+if(centerList.length){
+for(const p of centerList){const pg=pages[p.page];if(pg)drawField(pg,{...p,align:p.align||'center-point'},authorized.singleName,fonts,rgb)}
+}else if(botA&&pages[botA.page]){
 const pos=botB?{...botA,x:(botA.x+botB.x)/2,maxWidth:Math.max(botA.maxWidth||0,botB.maxWidth||0)||undefined}:botA;
 drawField(pages[botA.page],pos,authorized.singleName,fonts,rgb);
 }
