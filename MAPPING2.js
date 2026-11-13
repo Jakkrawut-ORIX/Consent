@@ -12,17 +12,17 @@ const MAPPING2 = {
     registrationDate: { page: 0, x: 418, y: 526, size: 8, maxWidth: 120 },
     companyAddress: { page: 0, x: 162, y: 498, size: 8, maxWidth: 360, lineHeight: 12 },
     phoneNo: { page: 0, x: 178, y: 466, size: 8, maxWidth: 190 },
+authorizedName: [
+  { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
+  { page: 0, x: 356, y: 70, size: 8, maxWidth: 120, align: 'right-point' }
+],
 
-    authorizedName: [
-      { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
-      { page: 0, x: 256, y: 70, size: 8, maxWidth: 125, align: 'center-point' }
-    ],
-
-    authorizedName2: [
-      { page: 0, x: 418, y: 512, size: 8, maxWidth: 130 },
-      { page: 0, x: 386, y: 70, size: 8, maxWidth: 130, align: 'center-point' }
-    ],
+authorizedName2: [
+  { page: 0, x: 418, y: 512, size: 8, maxWidth: 130 },
+  { page: 0, x: 376, y: 70, size: 8, maxWidth: 120 }
+],
 authorizedNameCenter: { page: 0, x: 366, y: 70, size: 8, maxWidth: 260, align: 'center-point' },
+
     faxNo: { page: 0, x: 405, y: 466, size: 8, maxWidth: 120 },
     contactName1: { page: 0, x: 128, y: 420, size: 8, maxWidth: 140 },
     contactPhone1: { page: 0, x: 310, y: 420, size: 8, maxWidth: 110 },
