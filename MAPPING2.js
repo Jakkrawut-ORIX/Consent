@@ -22,7 +22,7 @@ const MAPPING2 = {
       { page: 0, x: 418, y: 512, size: 8, maxWidth: 130 },
       { page: 0, x: 386, y: 70, size: 8, maxWidth: 130, align: 'center-point' }
     ],
-
+authorizedNameCenter: { page: 0, x: 321, y: 70, size: 8, maxWidth: 260, align: 'center-point' },
     faxNo: { page: 0, x: 405, y: 466, size: 8, maxWidth: 120 },
     contactName1: { page: 0, x: 128, y: 420, size: 8, maxWidth: 140 },
     contactPhone1: { page: 0, x: 310, y: 420, size: 8, maxWidth: 110 },
