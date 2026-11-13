@@ -10,7 +10,7 @@ const MAPPING2 = {
   fields: {
     companyName: { page: 0, x: 178, y: 542, size: 8, maxWidth: 185 },
     registrationDate: { page: 0, x: 418, y: 526, size: 8, maxWidth: 120 },
-    companyAddress: { page: 0, x: 162, y: 500, size: 8, maxWidth: 360, lineHeight: 12 },
+    companyAddress: { page: 0, x: 162, y: 492, size: 8, maxWidth: 360, lineHeight: 12 },
     phoneNo: { page: 0, x: 178, y: 466, size: 8, maxWidth: 190 },
 authorizedName: [
   { page: 0, x: 194, y: 512, size: 8, maxWidth: 125 },
