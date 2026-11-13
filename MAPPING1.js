@@ -13,15 +13,15 @@ const MAPPING1 = {
     registrationDate: { page: 0, x: 138, y: 470, size: 10, maxWidth: 110 },
     phoneNo: { page: 0, x: 420, y: 470, size: 10, maxWidth: 100 },
     authorizedNameCenter: { page: 0, x: 398, y: 230, size: 7.5, maxWidth: 260, align: 'center-point' },
-    authorizedName: [
-      { page: 0, x: 96, y: 448, size: 10, maxWidth: 125 },
-      { page: 0, x: 286, y: 230, size: 7.5, maxWidth: 125, align: 'center' }
-    ],
+authorizedName: [
+  { page: 0, x: 96, y: 448, size: 10, maxWidth: 125 },
+  { page: 0, x: 388, y: 230, size: 7.5, maxWidth: 120, align: 'right-point' }
+],
 
-    authorizedName2: [
-      { page: 0, x: 340, y: 448, size: 10, maxWidth: 130 },
-      { page: 0, x: 379, y: 230, size: 7.5, maxWidth: 130, align: 'center' }
-    ],
+authorizedName2: [
+  { page: 0, x: 340, y: 448, size: 10, maxWidth: 130 },
+  { page: 0, x: 408, y: 230, size: 7.5, maxWidth: 120 }
+],
   
     registrarOffice: { page: 0, x: 384, y: 430, size: 10, maxWidth: 140 }
   },
