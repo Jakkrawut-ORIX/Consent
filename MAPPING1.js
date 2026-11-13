@@ -22,7 +22,7 @@ const MAPPING1 = {
       { page: 0, x: 340, y: 448, size: 10, maxWidth: 130 },
       { page: 0, x: 379, y: 230, size: 7.5, maxWidth: 130, align: 'center' }
     ],
-  authorizedNameCenter: { page: 0, x: 388, y: 70, size: 8, maxWidth: 260, align: 'center-point' },
+  authorizedNameCenter: { page: 0, x: 398, y: 230, size: 8, maxWidth: 260, align: 'center-point' },
     registrarOffice: { page: 0, x: 384, y: 430, size: 10, maxWidth: 140 }
   },
 
